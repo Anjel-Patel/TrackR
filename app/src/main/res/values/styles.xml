@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <?xml version="1.0" encoding="utf-8"?>
+    <resources>
+
+        <style name="h1">
+            <item name="fontFamily">@font/inter_bold_700</item>
+            <item name="android:textSize">34sp</item>
+            <item name="android:letterSpacing">-0.01</item>
+        </style>
+
+        <style name="h2">
+            <item name="fontFamily">@font/inter_bold_700</item>
+            <item name="android:textSize">24sp</item>
+            <item name="android:letterSpacing">-0.01</item>
+        </style>
+
+        <style name="h3">
+            <item name="fontFamily">@font/inter_medium_500</item>
+            <item name="android:textSize">20sp</item>
+            <item name="android:letterSpacing">0</item>
+        </style>
+
+        <style name="body_1">
+            <item name="fontFamily">@font/inter_regular_400</item>
+            <item name="android:textSize">16sp</item>
+            <item name="android:letterSpacing">0</item>
+        </style>
+
+        <style name="body_2">
+            <item name="fontFamily">@font/inter_regular_400</item>
+            <item name="android:textSize">14sp</item>
+            <item name="android:letterSpacing">0</item>
+        </style>
+
+        <style name="subtitle">
+            <item name="fontFamily">@font/inter_semibold_600</item>
+            <item name="android:textSize">16sp</item>
+            <item name="android:letterSpacing">0</item>
+
+        </style>
+
+        <style name="caption_1">
+            <item name="fontFamily">@font/inter_regular_400</item>
+            <item name="android:textSize">14sp</item>
+            <item name="android:letterSpacing">0.2</item>
+        </style>
+
+        <style name="caption_2">
+            <item name="fontFamily">@font/inter_regular_400</item>
+            <item name="android:textSize">10sp</item>
+            <item name="android:letterSpacing">0.4</item>
+        </style>
+
+    </resources>
+</resources>

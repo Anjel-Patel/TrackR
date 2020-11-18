@@ -5,13 +5,13 @@
     <color name="warning_yellow">#FFCC00</color>
     <color name="error_red">#FF3B30</color>
     <color name="success_green">#34C759</color>
-
     <color name="blue_15">#D9EBFF</color>
+    <color name="white">#FFFFFFFF</color>
     <color name="black_60">#666666</color>
     <color name="black_30">#B3B3B3</color>
     <color name="black_10">#E5E5E5</color>
     <color name="black_2">#FAFAFA</color>
     <color name="red_15">#FFE2E0</color>
-    <color name="green_15">#E1F7E6</color>
     <color name="yellow_15">#FFF7D9</color>
+    <color name="green_15">#E1F7E6</color>
 </resources>
