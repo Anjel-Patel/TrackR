@@ -7,6 +7,7 @@
     android:background="@color/white"
     tools:context=".Register">
 
+
     <TextView
         android:id="@+id/pageHeading"
         android:layout_width="218dp"
@@ -73,6 +74,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="328dp"
         android:layout_height="20dp"
         android:layout_marginBottom="144dp"
@@ -101,13 +103,9 @@
         android:layout_width="328dp"
         android:layout_height="44dp"
         android:layout_marginTop="152dp"
-        android:background="@drawable/input"
-        android:ems="10"
-        android:gravity="center_vertical"
         android:inputType="textPersonName"
-        android:textAppearance="@style/body_2"
-        android:padding="12dp"
-        android:text="Name"
+        android:hint="Name"
+        style="@style/input_field"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -117,13 +115,9 @@
         android:layout_width="328dp"
         android:layout_height="44dp"
         android:layout_marginTop="212dp"
-        android:ems="10"
-        android:background="@drawable/input"
         android:inputType="textEmailAddress"
-        android:text="Email"
-        android:textAppearance="@style/body_2"
-        android:padding="12dp"
-        android:gravity="center_vertical"
+        android:hint="Email"
+        style="@style/input_field"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -133,15 +127,14 @@
         android:layout_width="328dp"
         android:layout_height="44dp"
         android:layout_marginTop="272dp"
-        android:ems="10"
-        android:background="@drawable/input"
+        style="@style/input_field"
         android:inputType="textPhonetic"
-        android:text="Phone"
-        android:textAppearance="@style/body_2"
-        android:padding="12dp"
-        android:gravity="center_vertical"
+        android:hint="Phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

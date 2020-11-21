@@ -63,4 +63,15 @@
 
     </style>
 
+    <style name="input_field">
+        <item name="android:textColorHint">@color/black_60</item>
+        <item name="android:textColor">@color/black_60</item>
+        <item name="android:background">@drawable/input</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:textAppearance">@style/body_2</item>
+        <item name="fontFamily">@font/inter_regular_400</item>
+
+    </style>
+
     </resources>

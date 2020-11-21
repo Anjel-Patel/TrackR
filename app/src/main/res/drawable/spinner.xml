@@ -4,12 +4,12 @@
         <layer-list>
             <item>
                 <shape android:shape="rectangle">
-                    <solid android:color="@color/black_2"/>
+                    <solid android:color="@color/primary_blue"/>
                     <corners android:radius="6dp"/>
                 </shape>
             </item>
             <item>
-                <bitmap android:gravity="center|right" android:src="@drawable/ic_chevron_down"/>
+                <bitmap android:gravity="center|end" android:src="@drawable/ic_chevron_down"/>
             </item>
         </layer-list>
     </item>
