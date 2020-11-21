@@ -28,6 +28,7 @@
 
         <style name="body_2">
             <item name="fontFamily">@font/inter_regular_400</item>
+            <item name="android:textColor">@color/black_30</item>
             <item name="android:textSize">14sp</item>
             <item name="android:letterSpacing">0</item>
         </style>

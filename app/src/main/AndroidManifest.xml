@@ -7,9 +7,15 @@
         android:icon="@mipmap/ic_launcher"
         android:label="TrackR"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@style/Theme.AppCompat.NoActionBar"
         android:supportsRtl="true">
+        <activity android:name=".Register">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".otp"></activity>
-        <activity android:name=".Register" />
     </application>
 
 </manifest>
