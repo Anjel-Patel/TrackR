@@ -91,5 +91,109 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/otp_phone_1"
+        android:layout_width="54dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="148dp"
+        android:textSize="34dp"
+        android:gravity="center"
+        style="@style/input_field"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/otp_phone_2"
+        android:layout_width="54dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="118dp"
+        android:layout_marginTop="148dp"
+        android:textSize="34dp"
+        android:gravity="center"
+        style="@style/input_field"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/otp_phone_3"
+        android:layout_width="54dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="188dp"
+        android:layout_marginTop="148dp"
+        android:textSize="34dp"
+        android:gravity="center"
+        style="@style/input_field"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/otp_phone_4"
+        android:layout_width="54dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="258dp"
+        android:layout_marginTop="148dp"
+        android:textSize="34dp"
+        android:gravity="center"
+        style="@style/input_field"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/otp_email_1"
+        android:layout_width="54dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="380dp"
+        android:textSize="34dp"
+        android:gravity="center"
+        style="@style/input_field"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/otp_email_2"
+        android:layout_width="54dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="118dp"
+        android:layout_marginTop="380dp"
+        android:textSize="34dp"
+        android:gravity="center"
+        style="@style/input_field"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/otp_email_3"
+        android:layout_width="54dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="188dp"
+        android:layout_marginTop="380dp"
+        android:textSize="34dp"
+        android:gravity="center"
+        style="@style/input_field"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/otp_email_4"
+        android:layout_width="54dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="258dp"
+        android:layout_marginTop="380dp"
+        android:textSize="34dp"
+        android:gravity="center"
+        style="@style/input_field"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
