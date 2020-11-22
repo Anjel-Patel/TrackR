@@ -47,12 +47,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        style="@style/button_primary"
         android:layout_width="328dp"
         android:layout_height="44dp"
-        android:layout_marginBottom="48dp"
 
+        android:layout_marginBottom="24dp"
         android:text="Verify OTP"
-        style="@style/button_primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
