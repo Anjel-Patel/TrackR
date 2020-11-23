@@ -72,7 +72,6 @@ public class otp extends Activity {
             public void onClick(View v) {
                 //Code for resending the OTP
                 Toast otp_resent = Toast.makeText(getBaseContext(), "A new OTP has been sent", Toast.LENGTH_SHORT);
-                otp_resent.setGravity(Gravity.BOTTOM,-100, -250);
                 otp_resent.show();
             }
         });
