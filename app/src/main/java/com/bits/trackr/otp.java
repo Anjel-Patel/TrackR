@@ -4,19 +4,22 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Layout;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import org.w3c.dom.Text;
 
 public class otp extends Activity {
-    View field1;
-    View field2;
-    View field3;
-    View field4;
+    EditText field1;
+    EditText field2;
+    EditText field3;
+    EditText field4;
     ConstraintLayout Layout_curr;
     TextView error_message;
     @Override
@@ -24,10 +27,18 @@ public class otp extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp);
         Layout_curr = (ConstraintLayout)findViewById(R.id.otp_layout);
-        field1 = (View)findViewById(R.id.otp_phone_1);
-        field2 = (View)findViewById(R.id.otp_phone_2);
-        field3 = (View)findViewById(R.id.otp_phone_3);
-        field4 = (View)findViewById(R.id.otp_phone_4);
+        field1 = (EditText)findViewById(R.id.otp_phone_1);
+        field2 = (EditText)findViewById(R.id.otp_phone_2);
+        field3 = (EditText)findViewById(R.id.otp_phone_3);
+        field4 = (EditText)findViewById(R.id.otp_phone_4);
+
+        EditText[] edit = {field1, field2, field3, field4};
+
+        field1.addTextChangedListener(new GenericTextWatcher(field1, edit));
+        field2.addTextChangedListener(new GenericTextWatcher(field2, edit));
+        field3.addTextChangedListener(new GenericTextWatcher(field3, edit));
+        field4.addTextChangedListener(new GenericTextWatcher(field4, edit));
+
         error_message = (TextView) findViewById(R.id.error_message_textview);
         Layout_curr.removeView(error_message);
     }
@@ -54,6 +65,15 @@ public class otp extends Activity {
 
                     Layout_curr.addView(error_message);
                 }
+            }
+        });
+        findViewById(R.id.resend_otp_button).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //Code for resending the OTP
+                Toast otp_resent = Toast.makeText(getBaseContext(), "A new OTP has been sent", Toast.LENGTH_SHORT);
+                otp_resent.setGravity(Gravity.BOTTOM,-100, -250);
+                otp_resent.show();
             }
         });
     }
