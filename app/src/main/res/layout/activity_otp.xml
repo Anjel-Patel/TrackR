@@ -8,7 +8,7 @@
     tools:context=".otp">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/otp"
         android:layout_width="230dp"
         android:layout_height="32dp"
         android:layout_marginTop="40dp"
@@ -47,10 +47,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/verify_otp_button"
         style="@style/button_primary"
         android:layout_width="328dp"
         android:layout_height="44dp"
-
         android:layout_marginBottom="24dp"
         android:text="Verify OTP"
         app:layout_constraintBottom_toBottomOf="parent"
