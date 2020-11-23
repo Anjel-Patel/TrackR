@@ -2,29 +2,30 @@ package com.bits.trackr;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
+import java.util.regex.*;
+import android.app.Activity;
 import android.widget.EditText;
 import java.util.regex.*;
 
-public class RegisterTextWatcher implements TextWatcher{
-    private EditText[] input_fields;
-    private View view_curr;
-    public RegisterTextWatcher(EditText input_fields[], View view_curr)
+public class UserNameWatcher implements TextWatcher {
+    private EditText view_curr;
+    public UserNameWatcher(EditText view_curr)
     {
-        this.input_fields = input_fields;
         this.view_curr = view_curr;
     }
-
     @Override
     public void afterTextChanged(Editable s) {
-        switch(view_curr.getId())
+        String str = s.toString();
+        Pattern p = Pattern.compile("[\\s]");
+        boolean m = Pattern.matches("[\\s]",str);
+        if(m)
         {
-            case R.id.PersonName:
-            {
-
-            }
+//            view_curr.setBackground();
         }
-
+        else
+        {
+//            view_curr.setBackground();
+        }
     }
 
     @Override
@@ -36,4 +37,5 @@ public class RegisterTextWatcher implements TextWatcher{
     public void onTextChanged(CharSequence s, int start, int before, int count) {
 
     }
+
 }
