@@ -133,6 +133,7 @@
         style="@style/input_field"
         android:inputType="textPhonetic"
         android:hint="Phone"
+        android:maxLength="13"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

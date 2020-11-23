@@ -3,17 +3,12 @@ package com.bits.trackr;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Layout;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
-
-import org.w3c.dom.Text;
 
 public class otp extends Activity {
     EditText field1;
@@ -34,10 +29,10 @@ public class otp extends Activity {
 
         EditText[] edit = {field1, field2, field3, field4};
 
-        field1.addTextChangedListener(new GenericTextWatcher(field1, edit));
-        field2.addTextChangedListener(new GenericTextWatcher(field2, edit));
-        field3.addTextChangedListener(new GenericTextWatcher(field3, edit));
-        field4.addTextChangedListener(new GenericTextWatcher(field4, edit));
+        field1.addTextChangedListener(new OTPTextWatcher(field1, edit));
+        field2.addTextChangedListener(new OTPTextWatcher(field2, edit));
+        field3.addTextChangedListener(new OTPTextWatcher(field3, edit));
+        field4.addTextChangedListener(new OTPTextWatcher(field4, edit));
 
         error_message = (TextView) findViewById(R.id.error_message_textview);
         Layout_curr.removeView(error_message);

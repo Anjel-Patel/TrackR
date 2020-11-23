@@ -5,10 +5,10 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 
-public class GenericTextWatcher implements TextWatcher {
+public class OTPTextWatcher implements TextWatcher {
     private final EditText[] editText;
     private View view;
-    public GenericTextWatcher(View view, EditText editText[])
+    public OTPTextWatcher(View view, EditText editText[])
     {
         this.editText = editText;
         this.view = view;
