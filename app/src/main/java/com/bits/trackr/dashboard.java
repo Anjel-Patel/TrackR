@@ -1,6 +1,7 @@
 package com.bits.trackr;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,7 +32,7 @@ public class dashboard extends AppCompatActivity {
         tasksRecyclerView.setAdapter(tasksAdapter);
 
         ToDoModel task = new ToDoModel();
-        task.setTask("This is a test Task");
+        task.setTask("This is a sample task");
         task.setStatus(0);
         task.setId(1);
 
@@ -40,7 +41,13 @@ public class dashboard extends AppCompatActivity {
         taskList.add(task);
         taskList.add(task);
         taskList.add(task);
+        taskList.add(task);
+        taskList.add(task);
 
         tasksAdapter.setTasks(taskList);
+
+        ItemTouchHelper itemTouchHelper = new
+                ItemTouchHelper(new RecyclerItemTouchHelper(tasksAdapter));
+        itemTouchHelper.attachToRecyclerView(tasksRecyclerView);
     }
 }

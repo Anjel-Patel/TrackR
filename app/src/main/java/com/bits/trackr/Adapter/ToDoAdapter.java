@@ -1,5 +1,6 @@
 package com.bits.trackr.Adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,14 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         return todoList.size();
 
     }
+
+    public void deleteItem(int position){
+        ToDoModel item = todoList.get(position);
+        todoList.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public Context getContext() {return activity; }
 
     private boolean toBoolean(int n){
         return n!=0;
