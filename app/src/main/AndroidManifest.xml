@@ -11,8 +11,10 @@
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".SplashActivity">
         </activity>
-        <activity android:name=".Register"/>
-        <activity android:name=".otp" />
+        <activity android:name=".Register">
+        </activity>
+        <activity android:name=".otp">
+        </activity>
         <activity android:name=".emailVerification"/>
         <activity android:name=".dashboard">
             <intent-filter>
