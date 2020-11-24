@@ -80,8 +80,3 @@ public class otp extends Activity {
         finish();
     }
 }
-
-//public class TextWatch
-//{
-//    public
-//}

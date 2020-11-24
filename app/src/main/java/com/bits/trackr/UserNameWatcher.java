@@ -1,30 +1,39 @@
 package com.bits.trackr;
 
+import android.content.Context;
+import android.graphics.BlendMode;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import java.util.regex.*;
-import android.app.Activity;
 import android.widget.EditText;
-import java.util.regex.*;
+
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 
 public class UserNameWatcher implements TextWatcher {
     private EditText view_curr;
-    public UserNameWatcher(EditText view_curr)
+    GradientDrawable curr_input_wrong;
+    Context curr_context;
+    public UserNameWatcher(EditText view_curr, Context curr_context)
     {
         this.view_curr = view_curr;
+        this.curr_context = curr_context;
+        curr_input_wrong =(GradientDrawable)ContextCompat.getDrawable(curr_context, R.drawable.input_wrong);
     }
     @Override
     public void afterTextChanged(Editable s) {
         String str = s.toString();
-        Pattern p = Pattern.compile("[\\s]");
-        boolean m = Pattern.matches("[\\s]",str);
+//        boolean m = Pattern.matches("[\\d][\\s]",str);
+        boolean m = Pattern.matches("[a-zA-Z0-9_]{4,15}",str);
         if(m)
         {
-//            view_curr.setBackground();
+            view_curr.setBackgroundResource(R.drawable.input);
         }
         else
         {
-//            view_curr.setBackground();
+            view_curr.setBackgroundResource(R.drawable.input_wrong);
         }
     }
 
