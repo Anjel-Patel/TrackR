@@ -1,9 +1,14 @@
 package com.bits.trackr;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.bits.trackr.Adapter.TaskAdapter;
@@ -19,24 +24,22 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class dashboard extends AppCompatActivity {
 
-   // private RecyclerView tasksRecyclerView;
+    private RecyclerView tasksRecyclerView;
     //private TaskAdapter tasksAdapter;
     // private List<TaskModel> toDoModelList;
     FirebaseAuth fauth;
     FirebaseUser user;
     FirebaseFirestore db=FirebaseFirestore.getInstance();
     private CollectionReference taskRef=db.collection("tasks");
-
     private TaskAdapter adapter;
     //Intent data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        tasksRecyclerView = findViewById(R.id.tasksText);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         setUpRecyclerView();
-
-
     }
     private void setUpRecyclerView()
     {
@@ -48,7 +51,22 @@ public class dashboard extends AppCompatActivity {
         RecyclerView recyclerView=findViewById(R.id.tasksText);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
 
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            if(direction==ItemTouchHelper.LEFT)
+                {
+                    viewHolder.itemView.setBackgroundColor(R.color.error_red);
+                    adapter.deleteItem(viewHolder.getAdapterPosition());
+                }
+            }
+        }).attachToRecyclerView(recyclerView);
     }
 
     @Override

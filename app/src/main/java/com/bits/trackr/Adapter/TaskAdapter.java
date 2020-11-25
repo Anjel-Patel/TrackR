@@ -1,5 +1,6 @@
 package com.bits.trackr.Adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,18 +11,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bits.trackr.Model.TaskModel;
 import com.bits.trackr.R;
+import com.bits.trackr.dashboard;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 //import java.util.List;
 
 public class TaskAdapter extends FirestoreRecyclerAdapter<TaskModel, TaskAdapter.TaskViewHolder> {
- //   private List<TaskModel> todoList;
+    // private List<TaskModel> taskList;
+     private dashboard activity;
 
     public TaskAdapter(FirestoreRecyclerOptions<TaskModel> options){
         super(options);
+
     }
 
     @NotNull
@@ -34,9 +40,13 @@ public class TaskAdapter extends FirestoreRecyclerAdapter<TaskModel, TaskAdapter
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position, @NonNull TaskModel model){
         holder.task.setText(model.getTitle());
     }
+    public Context getContext() {return activity; }
 
     private boolean toBoolean(int n){
         return n!=0;
+    }
+    public void deleteItem(int position){
+        getSnapshots().getSnapshot(position).getReference().delete();
     }
 
 //    public void setTasks(List<TaskModel> todoList){
