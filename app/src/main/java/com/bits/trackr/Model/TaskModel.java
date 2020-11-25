@@ -1,9 +1,12 @@
 package com.bits.trackr.Model;
 
-public class ToDoModel {
+public class TaskModel {
 
     private int id, status;
-    private String task;
+    public String title;
+    public TaskModel(){
+
+    }
 
     public int getId() {
         return id;
@@ -21,11 +24,11 @@ public class ToDoModel {
         this.status = status;
     }
 
-    public String getTask() {
-        return task;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTask(String task) {
-        this.task = task;
+    public void setTask(String title) {
+        this.title = title;
     }
 }
