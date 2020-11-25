@@ -1,53 +1,65 @@
 package com.bits.trackr;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import com.bits.trackr.Adapter.ToDoAdapter;
-import com.bits.trackr.Model.ToDoModel;
+import com.bits.trackr.Adapter.TaskAdapter;
+import com.bits.trackr.Model.TaskModel;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseUser;
 
 public class dashboard extends AppCompatActivity {
 
-    private RecyclerView tasksRecyclerView;
-    private ToDoAdapter tasksAdapter;
-    private List<ToDoModel> taskList;
+   // private RecyclerView tasksRecyclerView;
+    //private TaskAdapter tasksAdapter;
+    // private List<TaskModel> toDoModelList;
+    FirebaseAuth fauth;
+    FirebaseUser user;
+    FirebaseFirestore db=FirebaseFirestore.getInstance();
+    private CollectionReference taskRef=db.collection("tasks");
+
+    private TaskAdapter adapter;
+    //Intent data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+        setUpRecyclerView();
 
-        taskList = new ArrayList<>();
 
-        tasksRecyclerView = findViewById(R.id.tasksText);
-        tasksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        tasksAdapter = new ToDoAdapter(this);
-        tasksRecyclerView.setAdapter(tasksAdapter);
+    }
+    private void setUpRecyclerView()
+    {
+        Query query=taskRef.orderBy("title",Query.Direction.DESCENDING);
+        FirestoreRecyclerOptions<TaskModel> options= new FirestoreRecyclerOptions.Builder<TaskModel>()
+                .setQuery(query, TaskModel.class)
+                .build();
+        adapter=new TaskAdapter(options);
+        RecyclerView recyclerView=findViewById(R.id.tasksText);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
 
-        ToDoModel task = new ToDoModel();
-        task.setTask("This is a sample task");
-        task.setStatus(0);
-        task.setId(1);
+    }
 
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
 
-        tasksAdapter.setTasks(taskList);
-
-        ItemTouchHelper itemTouchHelper = new
-                ItemTouchHelper(new RecyclerItemTouchHelper(tasksAdapter));
-        itemTouchHelper.attachToRecyclerView(tasksRecyclerView);
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 }
