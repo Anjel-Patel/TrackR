@@ -1,13 +1,16 @@
 package com.bits.trackr.Adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bits.trackr.AddNewTask;
 import com.bits.trackr.Model.ToDoModel;
 import com.bits.trackr.R;
 import com.bits.trackr.dashboard;
@@ -52,8 +55,17 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     }
 
     public void setTasks(List<ToDoModel> todoList){
-            this.todoList = todoList;
-            notifyDataSetChanged();
+        this.todoList = todoList;
+    }
+
+    public void editItem(int position){
+        ToDoModel item = todoList.get(position);
+        Bundle bundle = new Bundle();
+        bundle.putInt("id", item.getId());
+        bundle.putString("task",item.getTask());
+        AddNewTask fragment = new AddNewTask();
+        fragment.setArguments(bundle);
+        fragment.show(activity.getSupportFragmentManager(), AddNewTask.TAG);
     }
     public static class ViewHolder extends RecyclerView.ViewHolder{
         CheckBox task;
