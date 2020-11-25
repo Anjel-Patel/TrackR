@@ -1,65 +1,80 @@
 package com.bits.trackr;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.View;
 
-import com.bits.trackr.Adapter.TaskAdapter;
-import com.bits.trackr.Model.TaskModel;
+import com.bits.trackr.Adapter.ToDoAdapter;
+import com.bits.trackr.Model.ToDoModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.auth.FirebaseUser;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public class dashboard extends AppCompatActivity {
 
-   // private RecyclerView tasksRecyclerView;
-    //private TaskAdapter tasksAdapter;
-    // private List<TaskModel> toDoModelList;
-    FirebaseAuth fauth;
-    FirebaseUser user;
-    FirebaseFirestore db=FirebaseFirestore.getInstance();
-    private CollectionReference taskRef=db.collection("tasks");
-
-    private TaskAdapter adapter;
-    //Intent data;
+    private RecyclerView tasksRecyclerView;
+    private ToDoAdapter tasksAdapter;
+    private List<ToDoModel> taskList;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        setUpRecyclerView();
+
+        taskList = new ArrayList<>();
+
+        tasksRecyclerView = findViewById(R.id.tasksText);
+        tasksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        tasksAdapter = new ToDoAdapter(this);
+        tasksRecyclerView.setAdapter(tasksAdapter);
+
+        fab = findViewById(R.id.addNewTask);
 
 
+        Collections.reverse(taskList);
+        tasksAdapter.setTasks(taskList);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddNewTask.newInstance().show(getSupportFragmentManager(), AddNewTask.TAG);
+            }
+        });
+
+        ToDoModel task = new ToDoModel();
+        task.setTask("This is a sample task");
+        task.setStatus(0);
+        task.setId(1);
+
+        taskList.add(task);
+        taskList.add(task);
+        taskList.add(task);
+        taskList.add(task);
+        taskList.add(task);
+        taskList.add(task);
+        taskList.add(task);
+
+        tasksAdapter.setTasks(taskList);
+
+        ItemTouchHelper itemTouchHelper = new
+                ItemTouchHelper(new RecyclerItemTouchHelper(tasksAdapter));
+        itemTouchHelper.attachToRecyclerView(tasksRecyclerView);
     }
-    private void setUpRecyclerView()
-    {
-        Query query=taskRef.orderBy("title",Query.Direction.DESCENDING);
-        FirestoreRecyclerOptions<TaskModel> options= new FirestoreRecyclerOptions.Builder<TaskModel>()
-                .setQuery(query, TaskModel.class)
-                .build();
-        adapter=new TaskAdapter(options);
-        RecyclerView recyclerView=findViewById(R.id.tasksText);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
 
+
+    public void handleDialogClose(DialogInterface dialog){
+        Collections.reverse(taskList);
+        tasksAdapter.setTasks(taskList);
+        tasksAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        adapter.startListening();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        adapter.stopListening();
-    }
 }
