@@ -1,29 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:padding="16dp">
 
     <EditText
         android:id="@+id/newTaskText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:hint="New Task"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/primary_black"
-        android:textColorHint="@color/black_60"/>
+        android:textColorHint="@color/black_60"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Description"
+        android:textColorHint="@color/black_30"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newTaskText" />
 
     <Button
-        android:id="@+id/newTaskButton"
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/newTaskText"
-        android:textSize="16sp"
-        android:layout_alignParentEnd="true"
-        android:background="@android:color/transparent"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/save_button_drawable"
         android:text="Save"
-        android:textColor="@color/primary_blue"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintVertical_bias="1.0" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/calendar_button"
+        android:layout_width="32sp"
+        android:layout_height="32sp"
+        android:background="@drawable/ic_calendar_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
