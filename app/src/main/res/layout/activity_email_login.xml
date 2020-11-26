@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EmailLoginActivity">
+
+    <TextView
+        android:id="@+id/pageHeading"
+        android:layout_width="218dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center_horizontal|top"
+        android:text="Welcome to Trackr"
+        android:textAppearance="@style/h2"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pageSubtitle"
+        android:layout_width="268dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="86dp"
+        android:gravity="center_horizontal|top"
+        android:lineSpacingExtra="1sp"
+        android:text="Manage your home inventory the smarter way!"
+        android:textAppearance="@style/body_1"
+        android:textColor="@color/black_60"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/Login"
+        style="@style/button_primary"
+        android:layout_width="328dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="374dp"
+        android:text="Login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/Email"
+        android:layout_width="328dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="152dp"
+        android:inputType="textEmailAddress"
+        android:hint="Email"
+        style="@style/input_field"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/Password"
+        android:layout_width="328dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="240dp"
+        android:inputType="textPassword"
+        android:hint="Password"
+        style="@style/input_field"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
