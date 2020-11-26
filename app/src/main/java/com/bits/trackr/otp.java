@@ -34,10 +34,10 @@ public class otp extends Activity {
     EditText field1, field2, field3, field4, field5, field6;
     private String otp, verificationId;
     private Button Verifyotp, resendotp;
-
+    ConstraintLayout Layout_curr;
+    Context Context_curr;
     private FirebaseAuth mAuth;
 
-    ConstraintLayout Layout_curr;
     TextView error_message;
 
     @Override
@@ -47,6 +47,8 @@ public class otp extends Activity {
 
         mAuth = FirebaseAuth.getInstance();
         Layout_curr = findViewById(R.id.otp_layout);
+        Context_curr = getBaseContext();
+
         field1 = findViewById(R.id.otp_phone_1);
         field2 = findViewById(R.id.otp_phone_2);
         field3 = findViewById(R.id.otp_phone_3);
@@ -54,6 +56,8 @@ public class otp extends Activity {
         field5 = findViewById(R.id.otp_phone_5);
         field6 = findViewById(R.id.otp_phone_6);
         Verifyotp = findViewById(R.id.verify_otp_button);
+
+
         //   resendotp = findViewById(R.id.rese)
 
         String phoneNumber = getIntent().getStringExtra("phoneNumber");
@@ -69,12 +73,12 @@ public class otp extends Activity {
 
         EditText[] edit = {field1, field2, field3, field4, field5, field6};
 
-        field1.addTextChangedListener(new OTPTextWatcher(field1, edit));
-        field2.addTextChangedListener(new OTPTextWatcher(field2, edit));
-        field3.addTextChangedListener(new OTPTextWatcher(field3, edit));
-        field4.addTextChangedListener(new OTPTextWatcher(field4, edit));
-        field5.addTextChangedListener(new OTPTextWatcher(field5, edit));
-        field6.addTextChangedListener(new OTPTextWatcher(field6, edit));
+        field1.addTextChangedListener(new OTPTextWatcher(field1, edit, Layout_curr, Context_curr));
+        field2.addTextChangedListener(new OTPTextWatcher(field2, edit, Layout_curr, Context_curr));
+        field3.addTextChangedListener(new OTPTextWatcher(field3, edit, Layout_curr, Context_curr));
+        field4.addTextChangedListener(new OTPTextWatcher(field4, edit, Layout_curr, Context_curr));
+        field5.addTextChangedListener(new OTPTextWatcher(field5, edit, Layout_curr, Context_curr));
+        field6.addTextChangedListener(new OTPTextWatcher(field6, edit, Layout_curr, Context_curr));
 
         error_message = (TextView) findViewById(R.id.error_message_textview);
         Layout_curr.removeView(error_message);
@@ -83,7 +87,7 @@ public class otp extends Activity {
             @Override
             public void onClick(View v) {
 
-                otp = field1.getText().toString()
+                otp =    field1.getText().toString()
                         +field2.getText().toString()
                         +field3.getText().toString()
                         +field4.getText().toString()
@@ -200,3 +204,28 @@ public class otp extends Activity {
         finish();
     }
 }
+
+
+//WHERE OTP IS RESENT
+//Toast otp_resent = Toast.makeText(getBaseContext(), "A new OTP has been sent", Toast.LENGTH_SHORT);
+
+//WHERE OTP IS CHECKED AS INCORRECT(PROLLY AFTER CLICKING VERIFY OTP BUTTON)
+//field1.setText("");
+//field2.setText("");
+//field3.setText("");
+//field4.setText("");
+//field5.setText("");
+//field6.setText("");
+//
+//field1.setBackground(getDrawable(R.drawable.input_wrong));
+//field2.setBackground(getDrawable(R.drawable.input_wrong));
+//field3.setBackground(getDrawable(R.drawable.input_wrong));
+//field4.setBackground(getDrawable(R.drawable.input_wrong));
+//field5.setBackground(getDrawable(R.drawable.input_wrong));
+//field6.setBackground(getDrawable(R.drawable.input_wrong));
+//field1.requestFocus();
+//
+//if(Layout_curr.indexOfChild(error_message)==-1)
+//    Layout_curr.addView(error_message);
+
+

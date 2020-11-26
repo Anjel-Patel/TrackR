@@ -34,6 +34,8 @@ public class OTPTextWatcher implements TextWatcher {
         editText[1].setBackground(ContextCompat.getDrawable(Context_curr,R.drawable.input));
         editText[2].setBackground(ContextCompat.getDrawable(Context_curr,R.drawable.input));
         editText[3].setBackground(ContextCompat.getDrawable(Context_curr,R.drawable.input));
+        editText[4].setBackground(ContextCompat.getDrawable(Context_curr,R.drawable.input));
+        editText[5].setBackground(ContextCompat.getDrawable(Context_curr,R.drawable.input));
 
 
         String text = editable.toString();
@@ -55,8 +57,20 @@ public class OTPTextWatcher implements TextWatcher {
                     editText[1].requestFocus();
                 break;
             case R.id.otp_phone_4:
-                if (text.length() == 0)
+                if (text.length() == 1)
+                    editText[4].requestFocus();
+                else if (text.length() == 0)
                     editText[2].requestFocus();
+                break;
+            case R.id.otp_phone_5:
+                if (text.length() == 1)
+                    editText[5].requestFocus();
+                else if (text.length() == 0)
+                    editText[3].requestFocus();
+                break;
+            case R.id.otp_phone_6:
+                if (text.length() == 0)
+                    editText[4].requestFocus();
                 break;
         }
     }
