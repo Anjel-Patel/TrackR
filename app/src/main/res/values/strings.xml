@@ -5,6 +5,9 @@
         <item>Student</item>
         <item>Job</item>
     </string-array>
+    <string name="username">Bad Panda</string>
+    <string name="useremail">badpanda420@gmail.com</string>
+    <string name="userphonenumber">+91-9312542069</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
