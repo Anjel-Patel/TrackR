@@ -23,6 +23,7 @@
         </activity>
         <activity android:name=".emailVerification"/>
         <activity android:name=".EmailLoginActivity"/>
+        <activity android:name=".AddTask"/>
     </application>
 
 </manifest>

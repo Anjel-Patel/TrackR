@@ -2,18 +2,21 @@ package com.bits.trackr;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.bits.trackr.Adapter.TaskAdapter;
 import com.bits.trackr.Model.TaskModel;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -25,14 +28,16 @@ import com.google.firebase.auth.FirebaseUser;
 public class dashboard extends AppCompatActivity {
 
     private RecyclerView tasksRecyclerView;
+    FirebaseFirestore fStore;
     //private TaskAdapter tasksAdapter;
     // private List<TaskModel> toDoModelList;
-    FirebaseAuth fauth;
+    FirebaseAuth fAuth;
     FirebaseUser user;
+    FloatingActionButton addTask;
     FirebaseFirestore db=FirebaseFirestore.getInstance();
     private CollectionReference taskRef=db.collection("tasks");
     private TaskAdapter adapter;
-    //Intent data;
+    Intent data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +45,25 @@ public class dashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         setUpRecyclerView();
+        addTask=findViewById(R.id.addNewTask);
+        data=getIntent();
+        addTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(dashboard.this, AddTask.class);
+                v.getContext().startActivity(i);
+            }
+        });
     }
     private void setUpRecyclerView()
     {
-        Query query=taskRef.orderBy("title",Query.Direction.DESCENDING);
+        fStore = FirebaseFirestore.getInstance();
+        fAuth = FirebaseAuth.getInstance();
+        user = fAuth.getCurrentUser();
+        Query query = fStore.collection("tasks")
+                .document(user.getUid())
+                .collection("myTasks")
+                .orderBy("title",Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<TaskModel> options= new FirestoreRecyclerOptions.Builder<TaskModel>()
                 .setQuery(query, TaskModel.class)
                 .build();
@@ -65,6 +85,9 @@ public class dashboard extends AppCompatActivity {
                     viewHolder.itemView.setBackgroundColor(R.color.error_red);
                     adapter.deleteItem(viewHolder.getAdapterPosition());
                 }
+            }
+            public void onItemClicked(@NonNull RecyclerView.ViewHolder viewHolder){
+                Toast.makeText(dashboard.this, "Item clicked at " + viewHolder.getAdapterPosition(), Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
     }

@@ -64,7 +64,7 @@ public class otp extends Activity {
         String emailtxt = getIntent().getStringExtra("emailtxt");
         String usertxt = getIntent().getStringExtra("usertxt");
 
-//        sendVerificationCode(phoneNumber);
+        sendVerificationCode(phoneNumber);
 //        SharedPreferences prefs = getApplicationContext().getSharedPreferences("USER_PREF", Context.MODE_PRIVATE);
 //        SharedPreferences.Editor editor = prefs.edit();
 //        editor.putString("phoneNumber", phoneNumber);
@@ -102,23 +102,18 @@ public class otp extends Activity {
                     return;
                 }
 
-                //verifyCode(otp);
-                Intent intent = new Intent(otp.this, emailVerification.class);
-                intent.putExtra("phoneNumber", phoneNumber);
-                intent.putExtra("emailtxt", emailtxt);
-                intent.putExtra("usertxt", usertxt);
-                startActivity(intent);
+                verifyCode(otp);
             }
         });
 
-//        findViewById(R.id.resend_otp_button).setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                //Code for resending the OTP
-//                Toast otp_resent = Toast.makeText(getBaseContext(), "A new OTP has been sent", Toast.LENGTH_SHORT);
-//                otp_resent.show();
-//            }
-//        });
+        findViewById(R.id.resend_otp_button).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //Code for resending the OTP
+                Toast otp_resent = Toast.makeText(getBaseContext(), "A new OTP has been sent", Toast.LENGTH_SHORT);
+                otp_resent.show();
+            }
+        });
     }
 
     private void verifyCode(String code) {
@@ -133,8 +128,11 @@ public class otp extends Activity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                            Intent intent = new Intent(otp.this, emailVerification.class);
+                            Intent intent = new Intent(otp.this, dashboard.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                              intent.putExtra("phoneNumber", phoneNumber);
+//                              intent.putExtra("emailtxt", emailtxt);
+//                              intent.putExtra("usertxt", usertxt);
 
                             startActivity(intent);
 
@@ -146,32 +144,40 @@ public class otp extends Activity {
     }
 
     private void sendVerificationCode(String phoneNumber) {
-        PhoneAuthOptions options =
-                PhoneAuthOptions.newBuilder(mAuth)
-                        .setPhoneNumber(phoneNumber)
-                        .setTimeout(60L, TimeUnit.SECONDS)
-                        .setActivity(this)
-                        .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-                            @Override
-                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                                Toast.makeText(otp.this, "Enter OTP", Toast.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            public void onVerificationFailed(@NonNull FirebaseException e) {
-                                Toast.makeText(otp.this, "Cannot create Account " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                Log.e("Error", e.getMessage());
-                            }
-
-                            @Override
-                            public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                                super.onCodeSent(s, forceResendingToken);
-                                Log.v("Success1", s);
-                                String codesent = s;
-                            }
-                        })          // OnVerificationStateChangedCallbacks
-                        .build();
+        PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
+                .setPhoneNumber(phoneNumber)
+                .setTimeout(60L, TimeUnit.SECONDS)
+                .setActivity(this)
+                .setCallbacks(mCallBack)
+                .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
+
+//        PhoneAuthOptions options =
+//                PhoneAuthOptions.newBuilder(mAuth)
+//                        .setPhoneNumber(phoneNumber)
+//                        .setTimeout(60L, TimeUnit.SECONDS)
+//                        .setActivity(this)
+//                        .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+//                            @Override
+//                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+//                                Toast.makeText(otp.this, "Enter OTP", Toast.LENGTH_SHORT).show();
+//                            }
+//
+//                            @Override
+//                            public void onVerificationFailed(@NonNull FirebaseException e) {
+//                                Toast.makeText(otp.this, "Cannot create Account " + e.getMessage(), Toast.LENGTH_SHORT).show();
+//                                Log.e("Error", e.getMessage());
+//                            }
+//
+//                            @Override
+//                            public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+//                                super.onCodeSent(s, forceResendingToken);
+//                                Log.v("Success1", s);
+//                                String codesent = s;
+//                            }
+//                        })          // OnVerificationStateChangedCallbacks
+//                        .build();
+//        PhoneAuthProvider.verifyPhoneNumber(options);
     }
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks
@@ -187,12 +193,30 @@ public class otp extends Activity {
             String code = phoneAuthCredential.getSmsCode();
             if (code != null) {
 //               otp.setText(code);
-                verifyCode(otp);
+                verifyCode(code);
             }
         }
         @Override
         public void onVerificationFailed(FirebaseException e) {
             Toast.makeText(otp.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            //WHERE OTP IS CHECKED AS INCORRECT(PROLLY AFTER CLICKING VERIFY OTP BUTTON)
+            field1.setText("");
+            field2.setText("");
+            field3.setText("");
+            field4.setText("");
+            field5.setText("");
+            field6.setText("");
+
+            field1.setBackground(getDrawable(R.drawable.input_wrong));
+            field2.setBackground(getDrawable(R.drawable.input_wrong));
+            field3.setBackground(getDrawable(R.drawable.input_wrong));
+            field4.setBackground(getDrawable(R.drawable.input_wrong));
+            field5.setBackground(getDrawable(R.drawable.input_wrong));
+            field6.setBackground(getDrawable(R.drawable.input_wrong));
+            field1.requestFocus();
+
+            if(Layout_curr.indexOfChild(error_message)==-1)
+                Layout_curr.addView(error_message);
         }
     };
 
@@ -208,24 +232,5 @@ public class otp extends Activity {
 
 //WHERE OTP IS RESENT
 //Toast otp_resent = Toast.makeText(getBaseContext(), "A new OTP has been sent", Toast.LENGTH_SHORT);
-
-//WHERE OTP IS CHECKED AS INCORRECT(PROLLY AFTER CLICKING VERIFY OTP BUTTON)
-//field1.setText("");
-//field2.setText("");
-//field3.setText("");
-//field4.setText("");
-//field5.setText("");
-//field6.setText("");
-//
-//field1.setBackground(getDrawable(R.drawable.input_wrong));
-//field2.setBackground(getDrawable(R.drawable.input_wrong));
-//field3.setBackground(getDrawable(R.drawable.input_wrong));
-//field4.setBackground(getDrawable(R.drawable.input_wrong));
-//field5.setBackground(getDrawable(R.drawable.input_wrong));
-//field6.setBackground(getDrawable(R.drawable.input_wrong));
-//field1.requestFocus();
-//
-//if(Layout_curr.indexOfChild(error_message)==-1)
-//    Layout_curr.addView(error_message);
 
 

@@ -8,7 +8,7 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/newTaskText"
+        android:id="@+id/newTaskTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
@@ -20,17 +20,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/newTaskContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="Description"
         android:textColorHint="@color/black_30"
+        android:textColor="@color/primary_black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newTaskText" />
+        app:layout_constraintTop_toBottomOf="@+id/newTaskTitle" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/addedNewTaskButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -38,7 +39,7 @@
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/newTaskContent"
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
@@ -46,8 +47,8 @@
         android:layout_width="32sp"
         android:layout_height="32sp"
         android:background="@drawable/ic_calendar_icon"
-        app:layout_constraintBottom_toBottomOf="@+id/button"
+        app:layout_constraintBottom_toBottomOf="@+id/addedNewTaskButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button" />
+        app:layout_constraintTop_toTopOf="@+id/addedNewTaskButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,7 @@ package com.bits.trackr.Model;
 public class TaskModel {
 
     private int id, status;
-    public String title;
+    public String title,content;
     public TaskModel(){
 
     }
@@ -28,7 +28,11 @@ public class TaskModel {
         return title;
     }
 
-    public void setTask(String title) {
+    public void setTitle(String title) {
         this.title = title;
     }
+
+    public String getContent() { return content;}
+
+    public void setContent(String content) { this.content=content; }
 }
