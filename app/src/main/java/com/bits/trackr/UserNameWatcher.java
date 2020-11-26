@@ -1,16 +1,12 @@
 package com.bits.trackr;
 
 import android.content.Context;
-import android.graphics.BlendMode;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import java.util.regex.*;
 import android.widget.EditText;
-
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
 
 public class UserNameWatcher implements TextWatcher {
     private EditText view_curr;

@@ -29,10 +29,10 @@ public class otp extends Activity {
 
         EditText[] edit = {field1, field2, field3, field4};
 
-        field1.addTextChangedListener(new OTPTextWatcher(field1, edit));
-        field2.addTextChangedListener(new OTPTextWatcher(field2, edit));
-        field3.addTextChangedListener(new OTPTextWatcher(field3, edit));
-        field4.addTextChangedListener(new OTPTextWatcher(field4, edit));
+        field1.addTextChangedListener(new OTPTextWatcher(field1, edit, Layout_curr, getBaseContext()));
+        field2.addTextChangedListener(new OTPTextWatcher(field2, edit, Layout_curr, getBaseContext()));
+        field3.addTextChangedListener(new OTPTextWatcher(field3, edit, Layout_curr, getBaseContext()));
+        field4.addTextChangedListener(new OTPTextWatcher(field4, edit, Layout_curr, getBaseContext()));
 
         error_message = (TextView) findViewById(R.id.error_message_textview);
         Layout_curr.removeView(error_message);
@@ -45,7 +45,10 @@ public class otp extends Activity {
         findViewById(R.id.verify_otp_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(false) //Condition to verify OTP
+
+                String otp_text = field1.getText().toString()+field2.getText().toString()+field3.getText().toString()+field4.getText().toString();
+//                Toast.makeText(getBaseContext(), otp_text, Toast.LENGTH_SHORT).show();
+                if(true) //Condition to verify OTP
                 {
                     Intent otp_to_emailverification = new Intent(otp.this, emailVerification.class);
                     startActivity(otp_to_emailverification);
@@ -53,12 +56,19 @@ public class otp extends Activity {
                 }
                 else
                 {
+                    field1.setText("");
+                    field2.setText("");
+                    field3.setText("");
+                    field4.setText("");
+
                     field1.setBackground(getDrawable(R.drawable.input_wrong));
                     field2.setBackground(getDrawable(R.drawable.input_wrong));
                     field3.setBackground(getDrawable(R.drawable.input_wrong));
                     field4.setBackground(getDrawable(R.drawable.input_wrong));
+                    field1.requestFocus();
 
-                    Layout_curr.addView(error_message);
+                    if(Layout_curr.indexOfChild(error_message)==-1)
+                        Layout_curr.addView(error_message);
                 }
             }
         });
@@ -68,6 +78,7 @@ public class otp extends Activity {
                 //Code for resending the OTP
                 Toast otp_resent = Toast.makeText(getBaseContext(), "A new OTP has been sent", Toast.LENGTH_SHORT);
                 otp_resent.show();
+
             }
         });
     }
