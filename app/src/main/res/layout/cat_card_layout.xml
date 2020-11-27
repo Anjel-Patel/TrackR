@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+        <Button
+            android:id="@+id/cat_card"
+            android:layout_width="156dp"
+            android:layout_height="119dp"
+            android:text="Groceries"
+            android:textAppearance="@style/h3"
+            android:textColor="@color/white"
+            android:background="@drawable/cat_card_background1"/>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

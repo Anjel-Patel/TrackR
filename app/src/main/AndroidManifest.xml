@@ -27,6 +27,7 @@
         <activity android:name=".ProfilePage"/>
         <activity android:name=".TaskDetails"/>
         <activity android:name=".EditTask"/>
+        <activity android:name=".AddCategory"/>
     </application>
 
 </manifest>

@@ -1,33 +1,22 @@
 package com.bits.trackr;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.bits.trackr.Adapter.TaskAdapter;
-import com.bits.trackr.Model.TaskModel;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseUser;
 
 public class dashboard extends AppCompatActivity {
@@ -101,14 +90,22 @@ public class dashboard extends AppCompatActivity {
 
             }
         });
-
-        addTask.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(dashboard.this, AddTask.class);
-                v.getContext().startActivity(i);
-            }
-        });
+        //this is for ToDo
+//        addTask.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(dashboard.this, AddCategory.class);
+//                v.getContext().startActivity(i);
+//            }
+//        });
+        // this is for adding category
+//        addTask.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(dashboard.this, AddCategory.class);
+//                v.getContext().startActivity(i);
+//            }
+//        });
 
         profile_button.setOnClickListener(new View.OnClickListener() {
             @Override
