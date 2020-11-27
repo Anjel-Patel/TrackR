@@ -19,4 +19,11 @@ public class Todo_Fragment extends Fragment {
 
         return inflater.inflate(R.layout.fragment_todo, container, false);
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        //Works the same as onCreate in dashboard.java
+    }
 }
