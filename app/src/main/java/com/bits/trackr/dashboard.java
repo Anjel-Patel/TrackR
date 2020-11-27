@@ -2,6 +2,7 @@ package com.bits.trackr;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -13,6 +14,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.text.Layout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -47,6 +49,7 @@ public class dashboard extends AppCompatActivity {
 
     Fragment todo_fragment;
     Fragment cat_fragment;
+    ConstraintLayout layout_curr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,7 @@ public class dashboard extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
         addTask=findViewById(R.id.addNewTask);
         profile_button = (Button)findViewById(R.id.profile_button);
+
 
         todo_fragment = new Todo_Fragment();
         cat_fragment = new Cat_Fragment();
