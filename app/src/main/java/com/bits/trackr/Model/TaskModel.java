@@ -3,9 +3,7 @@ package com.bits.trackr.Model;
 public class TaskModel {
 
     public String title,content;
-    public TaskModel(){
-
-    }
+    public TaskModel(){ }
     public String getTitle() {
         return title;
     }

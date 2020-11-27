@@ -11,16 +11,35 @@
 <!--    THIS HAS TO BE CHANGED FROM LINEARLAYOUTMANAGER -->
 <!--    TO GRIDLAYOUTMANAGER-->
 <!--    TAKE MUDIT'S PERMISSION BEFORE EDITING-->
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="INVENTORY"
+        android:textAppearance="@style/subtitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <View
+        android:id="@+id/divider1"
+        style="@style/divider"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView1" />
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/tasks_overdue_Text"
+        android:id="@+id/categories_card"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:padding="16dp"
         android:nestedScrollingEnabled="true"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider1"/>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
