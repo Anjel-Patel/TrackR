@@ -59,7 +59,7 @@ public class TaskAdapter extends FirestoreRecyclerAdapter<TaskModel, TaskAdapter
                 intent.setType("text/plain");
                 String shareTitle=model.getTitle();
                 String shareContent=model.getContent();
-                intent.putExtra(Intent.EXTRA_TEXT,"Task Title: "+shareTitle+"\nTask Description:"+shareContent);
+                intent.putExtra(Intent.EXTRA_TEXT,"Task Title: "+shareTitle+"\nTask Description:"+shareContent+"\n"+docId);
                 v.getContext().startActivity(intent);
                 return false;
             }

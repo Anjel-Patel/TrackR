@@ -34,8 +34,8 @@ public class EditTask extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_task);
-        fStore=fStore.getInstance();
         data = getIntent();
+        fStore=FirebaseFirestore.getInstance();
         editTaskTitle = findViewById(R.id.EditTaskTitle);
         editTaskContent = findViewById(R.id.EditTaskContent);
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -55,8 +55,9 @@ public class EditTask extends AppCompatActivity {
                 }
                 DocumentReference docref=fStore.collection("tasks").
                         document(user.getUid()).
-                        collection("mytasks").
+                        collection("myTasks").
                         document(data.getStringExtra("taskId"));
+
                 Map<String,Object> task = new HashMap<>();
                 task.put("title",Title);
                 task.put("content",Content);
@@ -71,7 +72,7 @@ public class EditTask extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(EditTask.this,"Task not updated, try again",Toast.LENGTH_SHORT);
-                        finish();
+
                     }
                 });
             }

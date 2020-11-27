@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ProfilePage extends Activity {
     Button logout_button;
@@ -23,10 +26,11 @@ public class ProfilePage extends Activity {
         logout_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Something that happens on logout.
-                Intent profilepage_to_register = new Intent(ProfilePage.this, Register.class);
-                startActivity(profilepage_to_register);
-                finish();
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(ProfilePage.this,"Signed out succesfully",Toast.LENGTH_SHORT);
+                Intent i=new Intent(ProfilePage.this,Register.class);
+                startActivity(i);
+
             }
         });
 
