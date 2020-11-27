@@ -113,7 +113,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:backgroundTint="@color/primary_blue"
-        android:src="@drawable/ic_plus"
+        android:src="@drawable/ic_plus_fab"
         app:backgroundTint="@color/primary_blue"
         app:layout_constraintBottom_toTopOf="@+id/tabLayout"
         app:layout_constraintEnd_toEndOf="parent"

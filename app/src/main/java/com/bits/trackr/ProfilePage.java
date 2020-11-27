@@ -43,4 +43,12 @@ public class ProfilePage extends Activity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent profilepage_to_dashboard = new Intent(ProfilePage.this, dashboard.class);
+        startActivity(profilepage_to_dashboard);
+        finish();
+    }
 }

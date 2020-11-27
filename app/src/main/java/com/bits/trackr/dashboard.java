@@ -91,22 +91,27 @@ public class dashboard extends AppCompatActivity {
             }
         });
         //this is for ToDo
-//        addTask.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(dashboard.this, AddCategory.class);
-//                v.getContext().startActivity(i);
-//            }
-//        });
-        // this is for adding category
-//        addTask.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(dashboard.this, AddCategory.class);
-//                v.getContext().startActivity(i);
-//            }
-//        });
-
+        addTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch(switcher_tab.getSelectedTabPosition())
+                {
+                    case 0: {
+                        Intent i = new Intent(dashboard.this, AddTask.class);
+                        v.getContext().startActivity(i);
+                        finish();
+                        break;
+                    }
+                    case 1:
+                    {
+                        Intent i = new Intent(dashboard.this, AddCategory.class);
+                        v.getContext().startActivity(i);
+                        finish();
+                        break;
+                    }
+                }
+            }
+        });
         profile_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
