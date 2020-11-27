@@ -8,6 +8,8 @@
     <string name="username">Joe Ligma</string>
     <string name="useremail">ligmacorp@gmail.com</string>
     <string name="userphonenumber">+91-9312542069</string>
+    <string name="userprofession">Business</string>
+
     <string name="title_activity_main">MainActivity</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>

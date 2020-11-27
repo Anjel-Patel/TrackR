@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -43,6 +44,7 @@ public class dashboard extends AppCompatActivity {
     FirebaseFirestore db=FirebaseFirestore.getInstance();
     private CollectionReference taskRef=db.collection("tasks");
     private TaskAdapter adapter;
+    Button profile_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +52,14 @@ public class dashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         addTask=findViewById(R.id.addNewTask);
-        switcher_tab = findViewById(R.id.tabLayout);
-        fragment_manager = getSupportFragmentManager();
-        fragment_transaction = fragment_manager.beginTransaction();
-        fragment_transaction.setReorderingAllowed(true)
-                .add(R.id.dashboard_fragment_container, Todo_Fragment.class, null)
-                .commit();
+        profile_button = (Button)findViewById(R.id.profile_button);
+
+//        switcher_tab = findViewById(R.id.tabLayout);
+//        fragment_manager = getSupportFragmentManager();
+//        fragment_transaction = fragment_manager.beginTransaction();
+//        fragment_transaction.setReorderingAllowed(true)
+//                .add(R.id.dashboard_fragment_container, Todo_Fragment.class, null)
+//                .commit();
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,8 +68,13 @@ public class dashboard extends AppCompatActivity {
             }
         });
 
+        profile_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent dashboard_to_profilepage = new Intent(dashboard.this, ProfilePage.class);
+                startActivity(dashboard_to_profilepage);
+                finish();
+            }
+        });
     }
-
-
-
 }

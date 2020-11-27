@@ -10,12 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".dashboard">
-        </activity>
-        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".SplashActivity">
         </activity>
         <activity android:name=".Register">
         </activity>
@@ -24,6 +24,7 @@
         <activity android:name=".emailVerification"/>
         <activity android:name=".EmailLoginActivity"/>
         <activity android:name=".AddTask"/>
+        <activity android:name=".ProfilePage"/>
     </application>
 
 </manifest>
