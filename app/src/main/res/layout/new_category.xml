@@ -14,9 +14,10 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:hint="New Category"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textAppearance="@style/h3"
         android:textColor="@color/primary_black"
         android:textColorHint="@color/black_60"
+        android:singleLine="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <Button
