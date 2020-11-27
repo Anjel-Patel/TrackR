@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.bits.trackr.Adapter.TaskAdapter;
 
@@ -36,6 +39,7 @@ public class dashboard extends AppCompatActivity {
 
     Fragment todo_fragment;
     Fragment cat_fragment;
+    private String login_state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,11 @@ public class dashboard extends AppCompatActivity {
                 .setReorderingAllowed(true)
                 .add(R.id.dashboard_fragment_container, todo_fragment, null)
                 .commit();
+
+        //THAT LOGIN BYPASS THING
+        SharedPreferences prefs = getSharedPreferences("TrackR", Context.MODE_PRIVATE);
+        this.login_state = prefs.getString("login_state", "0");
+//        Toast.makeText(getBaseContext(), login_state, Toast.LENGTH_SHORT).show();
 
         switcher_tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

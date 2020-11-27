@@ -74,4 +74,12 @@ public class AddTask extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent to_dashboard = new Intent(AddTask.this, dashboard.class);
+        startActivity(to_dashboard);
+        finish();
+    }
 }

@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:hint="Task name"
+        android:hint="Item name"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/primary_black"
         android:textColorHint="@color/black_60"
@@ -42,14 +42,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EditTaskContent"
         app:layout_constraintVertical_bias="1.0" />
-
-    <Button
-        android:id="@+id/calendar_button"
-        android:layout_width="32sp"
-        android:layout_height="32sp"
-        android:background="@drawable/ic_calendar_icon"
-        app:layout_constraintBottom_toBottomOf="@+id/saveEditedTaskButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/saveEditedTaskButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
