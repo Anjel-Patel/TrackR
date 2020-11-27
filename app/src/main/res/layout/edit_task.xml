@@ -14,10 +14,9 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:hint="New Task"
-        android:textAppearance="@style/h3"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/primary_black"
         android:textColorHint="@color/black_60"
-        android:singleLine="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,7 +26,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="Description"
-        android:textAppearance="@style/body_1"
         android:textColorHint="@color/black_30"
         android:textColor="@color/primary_black"
         app:layout_constraintStart_toStartOf="parent"

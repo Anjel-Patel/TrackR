@@ -3,40 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="0dp"
     app:cardBackgroundColor="@color/white"
-    android:background="@color/black_2"
-    android:layout_gravity="bottom">
+    android:background="@color/black_2">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="12dp">
 
         <EditText
-            android:id="@+id/newTaskTitle"
+            android:id="@+id/newItemTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:hint="New Task"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:hint="Item Name"
+            android:textAppearance="@style/body_1"
             android:textColor="@color/primary_black"
             android:textColorHint="@color/black_60"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/newTaskContent"
+            android:id="@+id/newItemContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="12dp"
             android:hint="Description"
-            android:textColor="@color/primary_black"
+            android:textAppearance="@style/body_2"
+            android:textColor="@color/black_60"
             android:textColorHint="@color/black_30"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/newTaskTitle" />
+            app:layout_constraintStart_toStartOf="@+id/newItemTitle"
+            app:layout_constraintTop_toBottomOf="@+id/newItemTitle" />
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        style="@style/divider"
+        android:layout_gravity="bottom"/>
+
 </androidx.cardview.widget.CardView>
