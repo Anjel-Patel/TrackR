@@ -24,8 +24,4 @@
             android:textColor="@color/primary_black" />
 
     </RelativeLayout>
-
-
-
-
 </androidx.cardview.widget.CardView>
