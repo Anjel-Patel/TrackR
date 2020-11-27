@@ -8,25 +8,24 @@
     app:startDestination="@id/fragment_todo">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.bits.trackr.dashboard"
+        android:id="@+id/TodoFragment"
+        android:name="com.bits.trackr.Todo_Fragment"
         tools:layout="@layout/fragment_todo">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/fragment"
+            app:destination="@id/CatFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.bits.test3.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/CatFragment"
+        android:name="com.bits.trackr.Cat_Fragment"
+        tools:layout="@layout/fragment_cat">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment"
+            app:destination="@id/TodoFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right" />
     </fragment>

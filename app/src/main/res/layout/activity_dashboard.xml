@@ -100,12 +100,12 @@
 
 <!--    THIS THING MAKES SPACE FOR FRAGMENT-->
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/dashboard_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/tabLayout"
         app:layout_constraintTop_toBottomOf="@+id/editText"
-        android:name="">
-
+        android:name="com.bits.trackr.Todo_Fragment">
     </androidx.fragment.app.FragmentContainerView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

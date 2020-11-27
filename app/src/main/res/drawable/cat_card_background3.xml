@@ -13,7 +13,7 @@
             />
         <path
             android:pathData="M0 0V119H156V0"
-            android:fillColor="#007AFF"
+            android:fillColor="#FF3B30"
             />
         <group
             android:translateX="0.5"
@@ -30,14 +30,13 @@
                 <aapt:attr name="android:fillColor">
                     <gradient
                         android:type="linear"
-                        android:fillAlpha="0.8"
                         android:startX="39"
                         android:startY="59.5"
                         android:endX="117"
                         android:endY="59.5"
                         >
                         <item
-                            android:color="#BA68C8"
+                            android:color="#FFD54F"
                             android:offset="0"
                             />
                         <item
