@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 
 public class RegisterPhone extends Activity {
     private EditText field1, field2, field3, field4, field5, field6;
-    private Button Verifyotp;
+    private Button SendOTP, Verifyotp;
     private EditText Username, phone;
 
     @Override
@@ -26,6 +26,8 @@ public class RegisterPhone extends Activity {
         field4 = findViewById(R.id.otp_phone_4);
         field5 = findViewById(R.id.otp_phone_5);
         field6 = findViewById(R.id.otp_phone_6);
+
+        SendOTP = findViewById(R.id.SendOTP);
         Verifyotp = findViewById(R.id.verify_otp_button);
     }
 
