@@ -36,6 +36,18 @@
             android:textAppearance="@style/h2"
             android:gravity="top"
             />
+
+        <Button
+            android:id="@+id/category_delete_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_delete"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="16dp"
+            />
+
     </RelativeLayout>
 
     <View

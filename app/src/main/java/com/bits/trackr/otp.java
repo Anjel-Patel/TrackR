@@ -232,5 +232,3 @@ public class otp extends Activity {
 
 //WHERE OTP IS RESENT
 //Toast otp_resent = Toast.makeText(getBaseContext(), "A new OTP has been sent", Toast.LENGTH_SHORT);
-
-

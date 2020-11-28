@@ -64,6 +64,32 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/mailregister"
+        android:layout_width="211dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="60dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="Register using Mail"
+        android:textAppearance="@style/body_2"
+        android:textColor="@color/primary_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/loginphone"
+        android:layout_width="211dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="40dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="Login using phone number"
+        android:textAppearance="@style/body_2"
+        android:textColor="@color/primary_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
         android:id="@+id/login_callout"
         android:layout_width="211dp"
         android:layout_height="20dp"
@@ -102,7 +128,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/Email"
+        android:id="@+id/PhoneEditText"
         android:layout_width="328dp"
         android:layout_height="44dp"
         android:layout_marginTop="152dp"
@@ -137,8 +163,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

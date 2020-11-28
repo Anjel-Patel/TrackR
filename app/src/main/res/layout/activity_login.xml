@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black_2">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="328dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="232dp"
+        android:src="@drawable/drawable_or"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/or"
+        android:layout_width="32dp"
+        android:layout_height="20dp"
+        android:layout_alignParentTop="false"
+        android:layout_marginBottom="232dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:lineSpacingExtra="-0.4dp"
+        android:text="OR"
+        android:textAppearance="@style/caption_1"
+        android:textColor="@color/black_60"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/LoginPhone"
+        style="@style/button_primary"
+        android:layout_width="328dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="180dp"
+        android:gravity="center"
+        android:text="Login with Phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/LoginEmail"
+        style="@style/button_primary"
+        android:layout_width="328dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="240dp"
+        android:gravity="center"
+        android:text="Login with Email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/LoginGoogle"
+        android:layout_width="328dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="368dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
+        android:drawableStart="@drawable/ic_google"
+        android:text="Login with Google"
+        android:padding="12dp"
+        android:textAppearance="@style/body_2"
+        android:textColor="@color/primary_black"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pageHeading"
+        android:layout_width="218dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center_horizontal|top"
+        android:text="Welcome to Trackr"
+        android:textAppearance="@style/h2"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pageSubtitle"
+        android:layout_width="268dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="86dp"
+        android:gravity="center_horizontal|top"
+        android:lineSpacingExtra="1sp"
+        android:text="Manage your home inventory the smarter way!"
+        android:textAppearance="@style/body_1"
+        android:textColor="@color/black_60"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
