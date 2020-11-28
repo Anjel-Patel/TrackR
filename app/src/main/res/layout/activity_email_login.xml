@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".EmailLoginActivity">
 
     <TextView
@@ -58,12 +59,12 @@
 
     <EditText
         android:id="@+id/Password"
+        style="@style/input_field"
         android:layout_width="328dp"
         android:layout_height="44dp"
-        android:layout_marginTop="240dp"
-        android:inputType="textPassword"
+        android:layout_marginTop="212dp"
         android:hint="Password"
-        style="@style/input_field"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
