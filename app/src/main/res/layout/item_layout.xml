@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:hint="Item Name"
+            android:singleLine="true"
             android:textAppearance="@style/body_1"
             android:textColor="@color/primary_black"
             android:textColorHint="@color/black_60"
