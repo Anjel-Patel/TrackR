@@ -1,7 +1,5 @@
 package com.bits.trackr;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,19 +26,21 @@ public class emailVerification extends AppCompatActivity {
 
     private static final String TAG = "Register";
     //    Button Register;
+    String passwordtxt = "123456";
     private FirebaseAuth fAuth;
+    private TextView logintxt;
+    String phoneNumber, emailtxt, usertxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email_verification);
-
         fAuth = FirebaseAuth.getInstance();;
 //        Register = findViewById(R.id.button);
-
-        String passwordtxt = getIntent().getStringExtra("passtxt");
-        String emailtxt = getIntent().getStringExtra("emailtxt");
-        String usertxt = getIntent().getStringExtra("usertxt");
+        logintxt = findViewById(R.id.logintxt);
+        phoneNumber = getIntent().getStringExtra("phoneNumber");
+        emailtxt = getIntent().getStringExtra("emailtxt");
+        usertxt = getIntent().getStringExtra("usertxt");
 
         fAuth.createUserWithEmailAndPassword(emailtxt, passwordtxt).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -48,7 +50,7 @@ public class emailVerification extends AppCompatActivity {
                     UserProfileChangeRequest request = new UserProfileChangeRequest.Builder().setDisplayName(usertxt).build();
                     user.updateProfile(request);
 
-                    Toast.makeText(emailVerification.this, "User Registered successfully.", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(emailVerification.this, "User Registered successfully.", Toast.LENGTH_SHORT).show();
                     try {
                         if (user != null)
                             user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -57,21 +59,12 @@ public class emailVerification extends AppCompatActivity {
 
                                     if (task.isSuccessful()) {
                                         Toast.makeText(emailVerification.this, "Verification Email sent", Toast.LENGTH_SHORT).show();
-                                                //Log.d(TAG, "Email sent.");
-                                                Toast.makeText(emailVerification.this, "Email sent", Toast.LENGTH_SHORT).show();
-                                                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(emailVerification.this);
-                                                alertDialogBuilder.setTitle("Please Verify Your EmailID");
-
-                                                alertDialogBuilder
-                                                        .setMessage("A verification Email Is Sent To Your Registered EmailID, please click on the link and Sign in again!")
-                                                        .setCancelable(false)
-                                                        .setPositiveButton("Sign In", new DialogInterface.OnClickListener() {
-                                                            public void onClick(DialogInterface dialog, int id) {
-                                                                emailVerification.this.finish();
-                                                            }
-                                                        });
-                                                AlertDialog alertDialog = alertDialogBuilder.create();
-                                                alertDialog.show();
+                                        logintxt.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                loginUser(emailtxt, passwordtxt);
+                                            }
+                                        });
                                     }
                                 }
                             });
@@ -92,12 +85,42 @@ public class emailVerification extends AppCompatActivity {
         });
 
     }
+
+    private void loginUser(String txt_email, String txt_password) {
+        fAuth.signInWithEmailAndPassword(txt_email, txt_password).addOnCompleteListener(emailVerification.this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                FirebaseUser user = fAuth.getCurrentUser();
+
+                if(task.isSuccessful()) {
+                    if(user.isEmailVerified()) {
+                        Toast.makeText(emailVerification.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(emailVerification.this, dashboard.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.putExtra("phoneNumber", phoneNumber);
+                        intent.putExtra("emailtxt", emailtxt);
+                        intent.putExtra("usertxt", usertxt);
+                        startActivity(intent);
+                    }
+                    else {
+                        //email.setError("Email is not verified. Please verify.");
+                        Toast.makeText(emailVerification.this, "Email is not verified. Please verify.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {
+//                    email.setError("This Email is not registered");
+//                    password.setError("Email and password combinaton does not match");
+//                    email.requestFocus();
+                }
+            }
+        });
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent emailverification_to_registerEmail = new Intent(emailVerification.this, RegisterEmail.class);
-        startActivity(emailverification_to_registerEmail);
+        Intent emailverification_to_otp = new Intent(emailVerification.this, Register.class);
+        startActivity(emailverification_to_otp);
         finish();
     }
-
 }

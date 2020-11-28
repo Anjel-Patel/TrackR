@@ -160,6 +160,7 @@ public class LoginPhone extends AppCompatActivity {
         }
         @Override
         public void onVerificationFailed(FirebaseException e) {
+            Toast.makeText(LoginPhone.this, "Bad move my friend.", Toast.LENGTH_LONG).show();
             Toast.makeText(LoginPhone.this, e.getMessage(), Toast.LENGTH_LONG).show();
 
             field1.setText("");
@@ -185,7 +186,7 @@ public class LoginPhone extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent otp_to_Register = new Intent(LoginPhone.this, Register.class);
+        Intent otp_to_Register = new Intent(LoginPhone.this, Login.class);
         startActivity(otp_to_Register);
         finish();
     }
