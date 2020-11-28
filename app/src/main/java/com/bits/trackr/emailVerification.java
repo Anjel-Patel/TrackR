@@ -26,7 +26,7 @@ public class emailVerification extends AppCompatActivity {
 
     private static final String TAG = "Register";
     //    Button Register;
-    String passwordtxt = "123456";
+    String passwordtxt;
     private FirebaseAuth fAuth;
     private TextView logintxt;
     String phoneNumber, emailtxt, usertxt;
@@ -38,7 +38,7 @@ public class emailVerification extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();;
 //        Register = findViewById(R.id.button);
         logintxt = findViewById(R.id.logintxt);
-        phoneNumber = getIntent().getStringExtra("phoneNumber");
+        passwordtxt = getIntent().getStringExtra("passtxt");
         emailtxt = getIntent().getStringExtra("emailtxt");
         usertxt = getIntent().getStringExtra("usertxt");
 
