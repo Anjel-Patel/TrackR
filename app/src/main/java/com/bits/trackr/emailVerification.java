@@ -26,7 +26,7 @@ public class emailVerification extends AppCompatActivity {
 
     private static final String TAG = "Register";
     //    Button Register;
-    String passwordtxt = "123456";
+    String passwordtxt;
     private FirebaseAuth fAuth;
 
     @Override
@@ -37,7 +37,7 @@ public class emailVerification extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();;
 //        Register = findViewById(R.id.button);
 
-        String phoneNumber = getIntent().getStringExtra("phoneNumber");
+        String passwordtxt = getIntent().getStringExtra("passtxt");
         String emailtxt = getIntent().getStringExtra("emailtxt");
         String usertxt = getIntent().getStringExtra("usertxt");
 
@@ -96,8 +96,8 @@ public class emailVerification extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent emailverification_to_otp = new Intent(emailVerification.this, otp.class);
-        startActivity(emailverification_to_otp);
+        Intent emailverification_to_registerEmail = new Intent(emailVerification.this, RegisterEmail.class);
+        startActivity(emailverification_to_registerEmail);
         finish();
     }
 
