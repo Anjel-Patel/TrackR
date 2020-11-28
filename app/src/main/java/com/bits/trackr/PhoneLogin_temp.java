@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-public class LoginPhone extends AppCompatActivity {
+public class PhoneLogin_temp extends AppCompatActivity {
 
     EditText phoneNo;// OTP;
     EditText field1, field2, field3, field4, field5, field6;
@@ -48,7 +48,7 @@ public class LoginPhone extends AppCompatActivity {
 //        OTP = findViewById(R.id.OTP);
 
         mAuth = FirebaseAuth.getInstance();
-        Layout_curr = findViewById(R.id.phone_login_layout);
+        Layout_curr = findViewById(R.id.otp_layout);
         Context_curr = getBaseContext();
 
 
@@ -64,12 +64,12 @@ public class LoginPhone extends AppCompatActivity {
 
         EditText[] edit = {field1, field2, field3, field4, field5, field6};
 
-        field1.addTextChangedListener(new OTPTextWatcher(field1, edit, Layout_curr, Context_curr));
-        field2.addTextChangedListener(new OTPTextWatcher(field2, edit, Layout_curr, Context_curr));
-        field3.addTextChangedListener(new OTPTextWatcher(field3, edit, Layout_curr, Context_curr));
-        field4.addTextChangedListener(new OTPTextWatcher(field4, edit, Layout_curr, Context_curr));
-        field5.addTextChangedListener(new OTPTextWatcher(field5, edit, Layout_curr, Context_curr));
-        field6.addTextChangedListener(new OTPTextWatcher(field6, edit, Layout_curr, Context_curr));
+//        field1.addTextChangedListener(new OTPTextWatcher(field1, edit, Layout_curr, Context_curr));
+//        field2.addTextChangedListener(new OTPTextWatcher(field2, edit, Layout_curr, Context_curr));
+//        field3.addTextChangedListener(new OTPTextWatcher(field3, edit, Layout_curr, Context_curr));
+//        field4.addTextChangedListener(new OTPTextWatcher(field4, edit, Layout_curr, Context_curr));
+//        field5.addTextChangedListener(new OTPTextWatcher(field5, edit, Layout_curr, Context_curr));
+//        field6.addTextChangedListener(new OTPTextWatcher(field6, edit, Layout_curr, Context_curr));
 //
 //        error_message = (TextView) findViewById(R.id.error_message_textview);
 //        Layout_curr.removeView(error_message);
@@ -120,13 +120,13 @@ public class LoginPhone extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Intent intent = new Intent(LoginPhone.this, dashboard.class);
+                            Intent intent = new Intent(PhoneLogin_temp.this, dashboard.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                             startActivity(intent);
                             finish();
                         } else {
-                            Toast.makeText(LoginPhone.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(PhoneLogin_temp.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -160,7 +160,7 @@ public class LoginPhone extends AppCompatActivity {
         }
         @Override
         public void onVerificationFailed(FirebaseException e) {
-            Toast.makeText(LoginPhone.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(PhoneLogin_temp.this, e.getMessage(), Toast.LENGTH_LONG).show();
 
             field1.setText("");
             field2.setText("");
@@ -185,7 +185,7 @@ public class LoginPhone extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent otp_to_Register = new Intent(LoginPhone.this, Register.class);
+        Intent otp_to_Register = new Intent(PhoneLogin_temp.this, Register.class);
         startActivity(otp_to_Register);
         finish();
     }

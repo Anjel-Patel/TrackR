@@ -28,6 +28,11 @@
         <activity android:name=".TaskDetails"/>
         <activity android:name=".EditTask"/>
         <activity android:name=".AddCategory"/>
+        <activity android:name=".RegisterEmail"/>
+        <activity android:name=".RegisterPhone"/>
+        <activity android:name=".Login"/>
+        <activity android:name=".LoginEmail"/>
+        <activity android:name=".LoginPhone"/>
     </application>
 
 </manifest>

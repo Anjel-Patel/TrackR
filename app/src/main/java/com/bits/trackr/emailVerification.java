@@ -26,7 +26,6 @@ public class emailVerification extends AppCompatActivity {
 
     private static final String TAG = "Register";
     //    Button Register;
-    String passwordtxt;
     private FirebaseAuth fAuth;
 
     @Override
@@ -58,21 +57,21 @@ public class emailVerification extends AppCompatActivity {
 
                                     if (task.isSuccessful()) {
                                         Toast.makeText(emailVerification.this, "Verification Email sent", Toast.LENGTH_SHORT).show();
-//                                                //Log.d(TAG, "Email sent.");
-//                                                Toast.makeText(emailVerification.this, "Email sent", Toast.LENGTH_SHORT).show();
-//                                                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(emailVerification.this);
-//                                                alertDialogBuilder.setTitle("Please Verify Your EmailID");
-//
-//                                                alertDialogBuilder
-//                                                        .setMessage("A verification Email Is Sent To Your Registered EmailID, please click on the link and Sign in again!")
-//                                                        .setCancelable(false)
-//                                                        .setPositiveButton("Sign In", new DialogInterface.OnClickListener() {
-//                                                            public void onClick(DialogInterface dialog, int id) {
-//                                                                emailVerification.this.finish();
-//                                                            }
-//                                                        });
-//                                                AlertDialog alertDialog = alertDialogBuilder.create();
-//                                                alertDialog.show();
+                                                //Log.d(TAG, "Email sent.");
+                                                Toast.makeText(emailVerification.this, "Email sent", Toast.LENGTH_SHORT).show();
+                                                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(emailVerification.this);
+                                                alertDialogBuilder.setTitle("Please Verify Your EmailID");
+
+                                                alertDialogBuilder
+                                                        .setMessage("A verification Email Is Sent To Your Registered EmailID, please click on the link and Sign in again!")
+                                                        .setCancelable(false)
+                                                        .setPositiveButton("Sign In", new DialogInterface.OnClickListener() {
+                                                            public void onClick(DialogInterface dialog, int id) {
+                                                                emailVerification.this.finish();
+                                                            }
+                                                        });
+                                                AlertDialog alertDialog = alertDialogBuilder.create();
+                                                alertDialog.show();
                                     }
                                 }
                             });
