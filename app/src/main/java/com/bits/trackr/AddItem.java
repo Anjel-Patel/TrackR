@@ -27,44 +27,49 @@ import android.widget.Toast;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddCategory extends AppCompatActivity {
+public class AddItem extends AppCompatActivity {
     FirebaseFirestore fstore;
-    EditText categoryTitle;
+    EditText itemQuantity, itemTitle;
     FirebaseUser user;
     Intent data;
+    Button newItem;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.new_category);
+        setContentView(R.layout.new_item);
         data = getIntent();
         fstore = FirebaseFirestore.getInstance();
-        categoryTitle = findViewById(R.id.newCategoryTitle);
+        itemQuantity = findViewById(R.id.newItemQuantity);
+        itemTitle = findViewById(R.id.newItemTitle);
         user = FirebaseAuth.getInstance().getCurrentUser();
-        Button newCategory = findViewById(R.id.addedNewCategoryButton);
-        newCategory.setOnClickListener(new View.OnClickListener() {
+        newItem = findViewById(R.id.addedNewItemButton);
+        newItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String Title = categoryTitle.getText().toString();
-                if(Title.isEmpty()){
-                    Toast.makeText(AddCategory.this, "Cannot save Category with Empty Fields", Toast.LENGTH_SHORT).show();
+                String Title = itemTitle.getText().toString();
+                String Quantity = itemQuantity.getText().toString();
+
+                if(Title.isEmpty()||Quantity.isEmpty()){
+                    Toast.makeText(AddItem.this, "Cannot save Items with Empty Fields", Toast.LENGTH_SHORT).show();
                     return;
 
                 }
                 DocumentReference docref = fstore.collection("categorys").document(user.getUid())
-                        .collection("myCategorys").document();
-                Map<String,Object> category = new HashMap<>();
-                category.put("title",Title);
-                docref.set(category).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        .collection("myCategorys").document(data.getStringExtra("categoryid")).collection("myItems").document();
+                Map<String,Object> task = new HashMap<>();
+                task.put("title",Title);
+                task.put("quantity",Quantity);
+                docref.set(task).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(AddCategory.this, "Category Added", Toast.LENGTH_SHORT).show();
-                        Intent intent=new Intent(AddCategory.this,dashboard.class);
+                        Toast.makeText(AddItem.this, "Item Added", Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(AddItem.this,CategoryContent.class);
                         startActivity(intent);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(AddCategory.this, "Try again", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddItem.this, "Try again", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

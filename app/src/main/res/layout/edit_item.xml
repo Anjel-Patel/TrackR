@@ -3,46 +3,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="bottom"
+    android:layout_height="wrap_content"
     android:background="@color/white"
+    android:layout_gravity="bottom"
     android:padding="16dp">
 
-    <EditText
-        android:id="@+id/EditTaskTitle"
+    <TextView
+        android:id="@+id/editItemTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
         android:hint="Item name"
-        android:textAppearance="@style/h3"
         android:singleLine="true"
+        android:textAppearance="@style/h3"
         android:textColor="@color/primary_black"
         android:textColorHint="@color/black_60"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/EditTaskContent"
+        android:id="@+id/editItemQuantity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:hint="Description"
-        android:textAppearance="@style/body_1"
+        android:hint="Quantity"
         android:textColorHint="@color/black_30"
         android:textColor="@color/primary_black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EditTaskTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/editItemTitle" />
+
 
     <Button
-        android:id="@+id/saveEditedTaskButton"
+        android:id="@+id/editedItemItemButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@drawable/save_button_drawable"
-        android:text="Save Edit"
+        android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EditTaskContent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/editItemQuantity"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

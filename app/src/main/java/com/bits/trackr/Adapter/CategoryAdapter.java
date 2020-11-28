@@ -6,11 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.bits.trackr.CategoryContent;
 import com.bits.trackr.Model.CategoryModel;
 import com.bits.trackr.R;
 
@@ -41,22 +43,22 @@ public class CategoryAdapter extends FirestoreRecyclerAdapter<CategoryModel, Cat
 
         holder.category.setText(model.getTitle());
         String docId=getSnapshots().getSnapshot(position).getId();
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent=new Intent(v.getContext(), CategoryContents.class);
-//                intent.putExtra("title",model.getTitle());
-//                intent.putExtra("taskId",docId);
-//                v.getContext().startActivity(intent);
-//            }
-//        });
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+        holder.category.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(v.getContext(), CategoryContent.class);
+                intent.putExtra("title",model.getTitle());
+                intent.putExtra("categoryid",docId);
+                v.getContext().startActivity(intent);
+            }
+        });
+        holder.category.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 Intent intent=new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 String shareTitle=model.getTitle();
-                intent.putExtra(Intent.EXTRA_TEXT,"Category Title: "+shareTitle);
+                intent.putExtra(Intent.EXTRA_TEXT,"Category Title: "+shareTitle+docId);
                 v.getContext().startActivity(intent);
                 return false;
             }

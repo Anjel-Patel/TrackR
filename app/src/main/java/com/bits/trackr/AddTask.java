@@ -59,6 +59,7 @@ public class AddTask extends AppCompatActivity {
                 Map<String,Object> task = new HashMap<>();
                 task.put("title",Title);
                 task.put("content",Content);
+                task.put("taskId",docref.getId());
                 docref.set(task).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

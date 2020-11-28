@@ -39,8 +39,7 @@ public class TaskAdapter extends FirestoreRecyclerAdapter<TaskModel, TaskAdapter
     }
 
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position, @NonNull TaskModel model){
-
-        holder.task.setText(model.getTitle());
+            holder.task.setText(model.getTitle());
         String docId=getSnapshots().getSnapshot(position).getId();
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +50,7 @@ public class TaskAdapter extends FirestoreRecyclerAdapter<TaskModel, TaskAdapter
                 intent.putExtra("taskId",docId);
                 v.getContext().startActivity(intent);
             }
+
         });
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -59,7 +59,7 @@ public class TaskAdapter extends FirestoreRecyclerAdapter<TaskModel, TaskAdapter
                 intent.setType("text/plain");
                 String shareTitle=model.getTitle();
                 String shareContent=model.getContent();
-                intent.putExtra(Intent.EXTRA_TEXT,"Task Title: "+shareTitle+"\nTask Description:"+shareContent+"\n"+docId);
+                intent.putExtra(Intent.EXTRA_TEXT,"Task Title: "+shareTitle+"\nTask Description:"+shareContent);
                 v.getContext().startActivity(intent);
                 return false;
             }

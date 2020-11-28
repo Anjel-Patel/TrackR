@@ -33,6 +33,9 @@
         <activity android:name=".Login"/>
         <activity android:name=".LoginEmail"/>
         <activity android:name=".LoginPhone"/>
+        <activity android:name=".CategoryContent"/>
+        <activity android:name=".EditItem"/>
+        <activity android:name=".AddItem"/>
     </application>
 
 </manifest>

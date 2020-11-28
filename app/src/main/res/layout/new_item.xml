@@ -22,11 +22,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/newItemContent"
+        android:id="@+id/newItemQuantity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:hint="Description"
+        android:hint="Quantity"
+        android:inputType="number"
         android:textAppearance="@style/body_2"
         android:textColorHint="@color/black_30"
         android:textColor="@color/primary_black"
@@ -43,6 +44,6 @@
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newItemContent"/>
+        app:layout_constraintTop_toBottomOf="@+id/newItemQuantity"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
