@@ -160,7 +160,6 @@ public class LoginPhone extends AppCompatActivity {
         }
         @Override
         public void onVerificationFailed(FirebaseException e) {
-            Toast.makeText(LoginPhone.this, "Bad move my friend.", Toast.LENGTH_LONG).show();
             Toast.makeText(LoginPhone.this, e.getMessage(), Toast.LENGTH_LONG).show();
 
             field1.setText("");
