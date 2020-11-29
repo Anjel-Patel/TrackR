@@ -10,6 +10,8 @@ import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 
+import java.util.regex.Pattern;
+
 public class RegisterEmail extends Activity {
     private EditText Username, email, password, profession;
     private Button Register;
@@ -38,10 +40,15 @@ public class RegisterEmail extends Activity {
                 String emailtxt = email.getText().toString().trim();
                 String passtxt = password.getText().toString().trim();
                 String proftxt = profession.getText().toString().trim().toLowerCase();
-                proftxt = proftxt.substring(0, 1).toUpperCase()+proftxt.substring(1);
 
                 if (usertxt.isEmpty()) {
                     Username.setError("Enter Username");
+                    Username.requestFocus();
+                    return;
+                }
+
+                if(!isalpha(usertxt)) {
+                    Username.setError("Enter valid User");
                     Username.requestFocus();
                     return;
                 }
@@ -59,16 +66,30 @@ public class RegisterEmail extends Activity {
                 }
 
                 if (passtxt.isEmpty()) {
-                    password.setError("Enter Valid Number");
+                    password.setError("Enter Password");
+                    password.requestFocus();
+                    return;
+                }
+
+                if(!passwordregex(passtxt)) {
+                    password.setError("Enter Strong Password");
                     password.requestFocus();
                     return;
                 }
 
                 if (proftxt.isEmpty()) {
-                    profession.setError("Enter Valid Number");
+                    profession.setError("Enter Profession");
                     profession.requestFocus();
                     return;
                 }
+
+                else if(!isalpha(proftxt)) {
+                    profession.setError("Enter Valid Profession");
+                    profession.requestFocus();
+                    return;
+                }
+                else
+                    proftxt = proftxt.substring(0, 1).toUpperCase()+proftxt.substring(1);
 
                 Intent intent = new Intent(RegisterEmail.this, emailVerification.class);
                 intent.putExtra("passtxt", passtxt);
@@ -80,5 +101,13 @@ public class RegisterEmail extends Activity {
 
             }
         });
+    }
+
+    private boolean passwordregex(String passtxt) {
+        return Pattern.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", passtxt);
+    }
+
+    private boolean isalpha(String usertxt) {
+        return Pattern.matches("[A-Za-z_ ]{2,15}", usertxt);
     }
 }

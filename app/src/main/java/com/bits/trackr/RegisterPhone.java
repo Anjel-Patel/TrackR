@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -89,6 +90,8 @@ public class RegisterPhone extends Activity {
             public void onClick(View v) {
 
                 PHONE = phone.getText().toString().trim();
+                USER = Username.getText().toString();
+                UserProfession = profession.getText().toString().trim().toLowerCase();
 
                 if (PHONE.isEmpty() || !only10Digits(PHONE)) {
                     phone.setError("Enter Valid Number");
@@ -96,7 +99,34 @@ public class RegisterPhone extends Activity {
                     return;
                 }
 
-                USER = Username.getText().toString();
+
+                if (USER.isEmpty()) {
+                    Username.setError("Enter Username");
+                    Username.requestFocus();
+                    return;
+                }
+
+                if(!isalpha(USER)) {
+                    Username.setError("Enter valid User");
+                    Username.requestFocus();
+                    return;
+                }
+
+                if (UserProfession.isEmpty()) {
+                    profession.setError("Enter Profession");
+                    profession.requestFocus();
+                    return;
+                }
+
+                else if(!isalpha(UserProfession)) {
+                    profession.setError("Enter Valid Profession");
+                    profession.requestFocus();
+                    return;
+                }
+                else
+                    UserProfession = UserProfession.substring(0, 1).toUpperCase()+UserProfession.substring(1);
+
+
                 sendVerificationCode("+91"+PHONE);
             }
         });
@@ -168,6 +198,7 @@ public class RegisterPhone extends Activity {
                             finish();
                         } else {
                             Toast.makeText(RegisterPhone.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            UI_verification_failed();
                         }
                     }
                 });
@@ -204,23 +235,7 @@ public class RegisterPhone extends Activity {
         public void onVerificationFailed(FirebaseException e) {
             Toast.makeText(RegisterPhone.this, e.getMessage(), Toast.LENGTH_LONG).show();
             //WHERE OTP IS CHECKED AS INCORRECT(PROLLY AFTER CLICKING VERIFY OTP BUTTON)
-            field1.setText("");
-            field2.setText("");
-            field3.setText("");
-            field4.setText("");
-            field5.setText("");
-            field6.setText("");
-
-            field1.setBackground(getDrawable(R.drawable.input_wrong));
-            field2.setBackground(getDrawable(R.drawable.input_wrong));
-            field3.setBackground(getDrawable(R.drawable.input_wrong));
-            field4.setBackground(getDrawable(R.drawable.input_wrong));
-            field5.setBackground(getDrawable(R.drawable.input_wrong));
-            field6.setBackground(getDrawable(R.drawable.input_wrong));
-            field1.requestFocus();
-
-            if(Layout_curr.indexOfChild(error_message)==-1)
-                Layout_curr.addView(error_message);
+            Toast.makeText(RegisterPhone.this, "BAD READ", Toast.LENGTH_LONG).show();
         }
     };
 
@@ -234,5 +249,30 @@ public class RegisterPhone extends Activity {
 
     private boolean only10Digits(String phonetxt) {
         return Pattern.compile("[0-9]{10}").matcher(phonetxt).matches();
+    }
+
+    private boolean isalpha(String usertxt) {
+        return Pattern.matches("[A-Za-z_ ]{2,15}", usertxt);
+    }
+
+    private void UI_verification_failed()
+    {
+        field1.setText("");
+        field2.setText("");
+        field3.setText("");
+        field4.setText("");
+        field5.setText("");
+        field6.setText("");
+
+        field1.setBackground(ContextCompat.getDrawable(getBaseContext(), R.drawable.input_wrong));
+        field2.setBackground(ContextCompat.getDrawable(getBaseContext(), R.drawable.input_wrong));
+        field3.setBackground(ContextCompat.getDrawable(getBaseContext(), R.drawable.input_wrong));
+        field4.setBackground(ContextCompat.getDrawable(getBaseContext(), R.drawable.input_wrong));
+        field5.setBackground(ContextCompat.getDrawable(getBaseContext(), R.drawable.input_wrong));
+        field6.setBackground(ContextCompat.getDrawable(getBaseContext(), R.drawable.input_wrong));
+        field1.requestFocus();
+
+        if(Layout_curr.indexOfChild(error_message)==-1)
+            Layout_curr.addView(error_message);
     }
 }
