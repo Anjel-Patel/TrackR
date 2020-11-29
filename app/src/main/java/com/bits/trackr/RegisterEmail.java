@@ -11,7 +11,7 @@ import android.widget.EditText;
 import androidx.annotation.Nullable;
 
 public class RegisterEmail extends Activity {
-    private EditText Username, email, password;
+    private EditText Username, email, password, profession;
     private Button Register;
 
     @Override
@@ -23,6 +23,7 @@ public class RegisterEmail extends Activity {
         email = findViewById(R.id.Email);
         password = findViewById(R.id.Password);
         Register = findViewById(R.id.registerButton);
+        profession = findViewById(R.id.Profession);
     }
 
     @Override
@@ -36,6 +37,8 @@ public class RegisterEmail extends Activity {
                 String usertxt = Username.getText().toString().trim();
                 String emailtxt = email.getText().toString().trim();
                 String passtxt = password.getText().toString().trim();
+                String proftxt = profession.getText().toString().trim().toLowerCase();
+                proftxt = proftxt.substring(0, 1).toUpperCase()+proftxt.substring(1);
 
                 if (usertxt.isEmpty()) {
                     Username.setError("Enter Username");
@@ -61,10 +64,17 @@ public class RegisterEmail extends Activity {
                     return;
                 }
 
+                if (proftxt.isEmpty()) {
+                    profession.setError("Enter Valid Number");
+                    profession.requestFocus();
+                    return;
+                }
+
                 Intent intent = new Intent(RegisterEmail.this, emailVerification.class);
                 intent.putExtra("passtxt", passtxt);
                 intent.putExtra("emailtxt", emailtxt);
                 intent.putExtra("usertxt", usertxt);
+                intent.putExtra("proftxt", proftxt);
 
                 startActivity(intent);
 

@@ -33,7 +33,7 @@ public class ProfilePage extends Activity {
         SharedPreferences prefs = getSharedPreferences("TrackR", Context.MODE_PRIVATE);
         UserName = prefs.getString("UserName", "");
         UserEmail = prefs.getString("UserEmail", "");
-        PhoneNumber = prefs.getString("Profession", "");
+        PhoneNumber = prefs.getString("PhoneNumber", "");
         UserProfession = prefs.getString("UserProfession", "");
 
         UserName_text = findViewById(R.id.UserName);

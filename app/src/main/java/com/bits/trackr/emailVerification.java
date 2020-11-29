@@ -17,12 +17,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class emailVerification extends AppCompatActivity {
 
@@ -32,6 +38,9 @@ public class emailVerification extends AppCompatActivity {
     private FirebaseAuth fAuth;
     private TextView logintxt;
     String emailtxt, usertxt, UserProfession;
+
+    private FirebaseFirestore fstore;
+    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +52,12 @@ public class emailVerification extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();;
 //        Register = findViewById(R.id.button);
+        fstore = FirebaseFirestore.getInstance();
         logintxt = findViewById(R.id.logintxt);
         passwordtxt = getIntent().getStringExtra("passtxt");
         emailtxt = getIntent().getStringExtra("emailtxt");
         usertxt = getIntent().getStringExtra("usertxt");
+        UserProfession = getIntent().getStringExtra("proftxt");
 
         fAuth.createUserWithEmailAndPassword(emailtxt, passwordtxt).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -64,6 +75,20 @@ public class emailVerification extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
 
                                     if (task.isSuccessful()) {
+
+                                        userId = fAuth.getCurrentUser().getUid();
+                                        DocumentReference documentReference = fstore.collection("users").document(userId);
+                                        Map<String, Object> user = new HashMap<>();
+                                        user.put("username", usertxt);
+                                        user.put("email", emailtxt);
+                                        user.put("profession", UserProfession);
+                                        documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Toast.makeText(emailVerification.this, "User Profile created.", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
                                         Toast.makeText(emailVerification.this, "Verification Email sent", Toast.LENGTH_SHORT).show();
                                         logintxt.setOnClickListener(new View.OnClickListener() {
                                             @Override

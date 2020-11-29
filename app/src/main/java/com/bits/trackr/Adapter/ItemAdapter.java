@@ -70,7 +70,7 @@ public class ItemAdapter extends FirestoreRecyclerAdapter<ItemModel, ItemAdapter
                 intent.setType("text/plain");
                 String shareTitle=model.getTitle();
                 String shareQuantity=model.getQuantity();
-                intent.putExtra(Intent.EXTRA_TEXT,"Item Title: "+shareTitle+"\nItem Quantity:"+shareQuantity+"\n"+categoryid);
+                intent.putExtra(Intent.EXTRA_TEXT,"Item Title: "+shareTitle+"\nItem Quantity:"+shareQuantity);
                 v.getContext().startActivity(intent);
                 return false;
             }

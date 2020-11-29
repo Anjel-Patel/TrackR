@@ -22,8 +22,6 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 import org.jetbrains.annotations.NotNull;
 
-
-
 public class CategoryAdapter extends FirestoreRecyclerAdapter<CategoryModel, CategoryAdapter.CategoryViewHolder> {
     private dashboard activity;
 
@@ -42,6 +40,9 @@ public class CategoryAdapter extends FirestoreRecyclerAdapter<CategoryModel, Cat
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position, @NonNull CategoryModel model){
 
         holder.category.setText(model.getTitle());
+
+        holder.category.findViewById(R.id.cat_card);
+
         String docId=getSnapshots().getSnapshot(position).getId();
         holder.category.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +59,7 @@ public class CategoryAdapter extends FirestoreRecyclerAdapter<CategoryModel, Cat
                 Intent intent=new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 String shareTitle=model.getTitle();
-                intent.putExtra(Intent.EXTRA_TEXT,"Category Title: "+shareTitle+docId);
+                intent.putExtra(Intent.EXTRA_TEXT,"Category Title: "+shareTitle);
                 v.getContext().startActivity(intent);
                 return false;
             }

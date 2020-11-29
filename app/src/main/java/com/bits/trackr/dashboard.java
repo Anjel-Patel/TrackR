@@ -46,6 +46,7 @@ public class dashboard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         tasksRecyclerView = findViewById(R.id.tasksText);
         super.onCreate(savedInstanceState);
+
         SharedPreferences prefs = getSharedPreferences("TrackR", Context.MODE_PRIVATE);
 
         setContentView(R.layout.activity_dashboard);

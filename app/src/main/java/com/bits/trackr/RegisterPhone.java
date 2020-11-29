@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
@@ -23,15 +24,19 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.auth.User;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 public class RegisterPhone extends Activity {
     private EditText field1, field2, field3, field4, field5, field6;
     private Button SendOTP, Verifyotp;
-    private EditText Username, phone;
+    private EditText Username, phone, profession;
 
     private FirebaseAuth mAuth;
     FirebaseFirestore fStore;
@@ -39,7 +44,7 @@ public class RegisterPhone extends Activity {
     ConstraintLayout Layout_curr;
     Context Context_curr;
 
-    private String USER, PHONE, otp, verificationId, UserProfession;
+    private String USER, PHONE, otp, verificationId, UserProfession, UId;
     TextView error_message;
 
     @Override
@@ -52,6 +57,7 @@ public class RegisterPhone extends Activity {
 
         Username = findViewById(R.id.UserName);
         phone = findViewById(R.id.Phone);
+        profession = findViewById(R.id.Profession);
 
         mAuth = FirebaseAuth.getInstance();
         Layout_curr = findViewById(R.id.phone_register_layout);
@@ -132,11 +138,28 @@ public class RegisterPhone extends Activity {
                         if (task.isSuccessful()) {
 
                             String FullPhoneNumber = "+91-"+PHONE;
+                            UserProfession = profession.getText().toString().trim().toLowerCase();
+                            UserProfession = UserProfession.substring(0, 1).toUpperCase()+UserProfession.substring(1);
+
                             SharedPreferences prefs = getSharedPreferences("TrackR", Context.MODE_PRIVATE);
                             prefs.edit().putString("login_state", "1").commit();
                             prefs.edit().putString("UserName", USER).commit();
                             prefs.edit().putString("PhoneNumber", FullPhoneNumber).commit();
                             prefs.edit().putString("UserProfession", UserProfession).commit();
+
+                            FirebaseFirestore fstore = FirebaseFirestore.getInstance();
+
+                            UId = mAuth.getCurrentUser().getUid();
+                            DocumentReference documentReference = fstore.collection("users").document(UId);
+                            Map<String, Object> user = new HashMap<>();
+                            user.put("username", USER);
+                            user.put("profession", UserProfession);
+                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(RegisterPhone.this, "User Profile created.", Toast.LENGTH_SHORT).show();
+                                }
+                            });
 
                             Intent intent = new Intent(RegisterPhone.this, dashboard.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
