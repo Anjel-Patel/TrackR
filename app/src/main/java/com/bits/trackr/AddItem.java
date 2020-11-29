@@ -64,6 +64,7 @@ public class AddItem extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(AddItem.this, "Item Added", Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(AddItem.this,CategoryContent.class);
+                        intent.putExtra("categoryid", data.getStringExtra("categoryid"));
                         startActivity(intent);
                     }
                 }).addOnFailureListener(new OnFailureListener() {

@@ -33,6 +33,7 @@ public class Register extends Activity {
         prefs.edit().putString("UserName", "").commit();
         prefs.edit().putString("UserEmail", "").commit();
         prefs.edit().putString("PhoneNumber", "").commit();
+        prefs.edit().putString("UserProfession", "").commit();
 
         signup_phone = (Button)findViewById(R.id.SignupPhone);
         signup_email = (Button)findViewById(R.id.SignupEmail);

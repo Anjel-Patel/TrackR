@@ -66,7 +66,9 @@ public class EditItem extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(EditItem.this,"Quantity Updated",Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(),CategoryContent.class));
+                        Intent intent = new Intent(EditItem.this, CategoryContent.class);
+                        intent.putExtra("categoryid", data.getStringExtra("categoryid"));
+                        startActivity(intent);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

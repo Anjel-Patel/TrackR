@@ -79,6 +79,7 @@ public class ProfilePage extends Activity {
                 prefs.edit().putString("UserName", "").commit();
                 prefs.edit().putString("UserEmail", "").commit();
                 prefs.edit().putString("PhoneNumber", "").commit();
+                prefs.edit().putString("UserProfession", "").commit();
 
                 Toast.makeText(ProfilePage.this,"Signed out succesfully",Toast.LENGTH_SHORT);
                 Intent back_to_registration=new Intent(ProfilePage.this,Register.class);

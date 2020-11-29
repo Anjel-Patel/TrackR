@@ -121,4 +121,12 @@ public class CategoryContent extends AppCompatActivity {
         super.onStop();
         adapter.stopListening();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent back_to_dashboard = new Intent(CategoryContent.this, dashboard.class);
+        startActivity(back_to_dashboard);
+        finish();
+    }
 }
