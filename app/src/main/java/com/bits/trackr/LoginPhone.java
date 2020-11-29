@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,12 +32,13 @@ public class LoginPhone extends AppCompatActivity {
 
     EditText phoneNo;// OTP;
     EditText field1, field2, field3, field4, field5, field6;
-    private String otp, verificationId;
+    private String otp, verificationId, UserName, UserProfession;
     private Button SendOTP, Verifyotp;
     ConstraintLayout Layout_curr;
     Context Context_curr;
     private FirebaseAuth mAuth;
     FirebaseFirestore fStore;
+    String Full_phone_number;
 
     TextView error_message;
 
@@ -44,6 +46,11 @@ public class LoginPhone extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_login);
+
+//        Set from database
+        UserName = "";
+        UserProfession = "";
+
         phoneNo = findViewById(R.id.Phone);
 //        OTP = findViewById(R.id.OTP);
 
@@ -70,14 +77,15 @@ public class LoginPhone extends AppCompatActivity {
         field4.addTextChangedListener(new OTPTextWatcher(field4, edit, Layout_curr, Context_curr));
         field5.addTextChangedListener(new OTPTextWatcher(field5, edit, Layout_curr, Context_curr));
         field6.addTextChangedListener(new OTPTextWatcher(field6, edit, Layout_curr, Context_curr));
-//
-//        error_message = (TextView) findViewById(R.id.error_message_textview);
-//        Layout_curr.removeView(error_message);
+
+        error_message = (TextView) findViewById(R.id.error_message_textview);
+        Layout_curr.removeView(error_message);
 
         SendOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String PhoneNumber = "+91" + phoneNo.getText().toString().trim();
+                Full_phone_number = PhoneNumber;
                 sendVerificationCode(PhoneNumber);
             }
         });
@@ -123,6 +131,12 @@ public class LoginPhone extends AppCompatActivity {
                             Intent intent = new Intent(LoginPhone.this, dashboard.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
+                            SharedPreferences prefs = getSharedPreferences("TrackR", Context.MODE_PRIVATE);
+                            prefs.edit().putString("login_state", "1").commit();
+                            prefs.edit().putString("PhoneNumber", Full_phone_number).commit();
+                            prefs.edit().putString("UserName", UserName).commit();
+                            prefs.edit().putString("UserProfession", UserProfession).commit();
+
                             startActivity(intent);
                             finish();
                         } else {
@@ -160,6 +174,7 @@ public class LoginPhone extends AppCompatActivity {
         }
         @Override
         public void onVerificationFailed(FirebaseException e) {
+            Toast.makeText(Context_curr, "Bad Read", Toast.LENGTH_SHORT).show();
             Toast.makeText(LoginPhone.this, e.getMessage(), Toast.LENGTH_LONG).show();
 
             field1.setText("");

@@ -23,10 +23,17 @@ public class LoginEmail extends Activity {
     private Button login;
     private FirebaseAuth auth;
 
+    //Set this from database.
+    private String UserName, UserProfession;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email_login);
+
+//        Set from database
+        UserName = "";
+        UserProfession = "";
 
         email = findViewById(R.id.Email);
         password = findViewById(R.id.Password);
@@ -57,6 +64,9 @@ public class LoginEmail extends Activity {
                     //FOR LOGIN BYPASS
                     SharedPreferences prefs = getSharedPreferences("TrackR", Context.MODE_PRIVATE);
                     prefs.edit().putString("login_state", "1").commit();
+                    prefs.edit().putString("UserName", UserName).commit();
+                    prefs.edit().putString("UserEmail", txt_email).commit();
+                    prefs.edit().putString("UserProfession", UserProfession).commit();
 
                     Toast.makeText(LoginEmail.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginEmail.this, dashboard.class);

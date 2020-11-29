@@ -19,10 +19,7 @@
         </activity>
         <activity android:name=".Register">
         </activity>
-        <activity android:name=".otp">
-        </activity>
         <activity android:name=".emailVerification"/>
-        <activity android:name=".EmailLoginActivity"/>
         <activity android:name=".AddTask"/>
         <activity android:name=".ProfilePage"/>
         <activity android:name=".TaskDetails"/>

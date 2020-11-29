@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,12 +31,16 @@ public class emailVerification extends AppCompatActivity {
     String passwordtxt;
     private FirebaseAuth fAuth;
     private TextView logintxt;
-    String phoneNumber, emailtxt, usertxt;
+    String emailtxt, usertxt, UserProfession;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email_verification);
+
+//        set from database
+        UserProfession = "";
+
         fAuth = FirebaseAuth.getInstance();;
 //        Register = findViewById(R.id.button);
         logintxt = findViewById(R.id.logintxt);
@@ -95,11 +101,15 @@ public class emailVerification extends AppCompatActivity {
                 if(task.isSuccessful()) {
                     if(user.isEmailVerified()) {
                         Toast.makeText(emailVerification.this, "Login Successful", Toast.LENGTH_SHORT).show();
+
+                        SharedPreferences prefs = getSharedPreferences("TrackR", Context.MODE_PRIVATE);
+                        prefs.edit().putString("login_state", "1").commit();
+                        prefs.edit().putString("UserName", usertxt).commit();
+                        prefs.edit().putString("UserEmail", txt_email).commit();
+                        prefs.edit().putString("UserProfession", UserProfession).commit();
+
                         Intent intent = new Intent(emailVerification.this, dashboard.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        intent.putExtra("phoneNumber", phoneNumber);
-                        intent.putExtra("emailtxt", emailtxt);
-                        intent.putExtra("usertxt", usertxt);
                         startActivity(intent);
                     }
                     else {

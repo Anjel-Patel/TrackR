@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/phone_login_layout"
-    android:background="@color/white"
-    tools:context=".EmailLoginActivity">
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/pageHeading"
@@ -48,7 +47,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/OTPlinearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -135,6 +134,17 @@
             app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/error_message_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:text="Incorrect OTP"
+        android:textAppearance="@style/body_2"
+        android:textColor="@color/error_red"
+        app:layout_constraintTop_toBottomOf="@id/OTPlinearLayout"
+        app:layout_constraintStart_toStartOf="@id/OTPlinearLayout"/>
+
     <Button
         android:id="@+id/SendOTP"
         style="@style/button_primary"
@@ -151,11 +161,11 @@
         style="@style/button_primary"
         android:layout_width="328dp"
         android:layout_height="44dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="44dp"
         android:text="Verify OTP"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/OTPlinearLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

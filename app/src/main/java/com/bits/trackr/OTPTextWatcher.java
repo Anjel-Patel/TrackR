@@ -37,7 +37,6 @@ public class OTPTextWatcher implements TextWatcher {
         editText[4].setBackground(ContextCompat.getDrawable(Context_curr,R.drawable.input));
         editText[5].setBackground(ContextCompat.getDrawable(Context_curr,R.drawable.input));
 
-
         String text = editable.toString();
         switch (view.getId()) {
             case R.id.otp_phone_1:

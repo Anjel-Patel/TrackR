@@ -70,4 +70,12 @@ public class AddCategory extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent to_dashboard = new Intent(AddCategory.this, dashboard.class);
+        startActivity(to_dashboard);
+        finish();
+    }
 }

@@ -3,6 +3,7 @@ package com.bits.trackr;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -38,13 +39,16 @@ public class RegisterPhone extends Activity {
     ConstraintLayout Layout_curr;
     Context Context_curr;
 
-    private String USER, PHONE, otp, verificationId;
+    private String USER, PHONE, otp, verificationId, UserProfession;
     TextView error_message;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_register);
+
+//        Set from database.
+        UserProfession = "";
 
         Username = findViewById(R.id.UserName);
         phone = findViewById(R.id.Phone);
@@ -126,10 +130,16 @@ public class RegisterPhone extends Activity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
+                            String FullPhoneNumber = "+91-"+PHONE;
+                            SharedPreferences prefs = getSharedPreferences("TrackR", Context.MODE_PRIVATE);
+                            prefs.edit().putString("login_state", "1").commit();
+                            prefs.edit().putString("UserName", USER).commit();
+                            prefs.edit().putString("PhoneNumber", FullPhoneNumber).commit();
+                            prefs.edit().putString("UserProfession", UserProfession).commit();
+
                             Intent intent = new Intent(RegisterPhone.this, dashboard.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            intent.putExtra("phoneNumber", "+91"+PHONE);
-                            intent.putExtra("usertxt", USER);
 
                             startActivity(intent);
                             finish();

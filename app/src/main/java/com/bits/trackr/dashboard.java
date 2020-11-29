@@ -39,12 +39,15 @@ public class dashboard extends AppCompatActivity {
 
     Fragment todo_fragment;
     Fragment cat_fragment;
+    private String tab_position;
     private String login_state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         tasksRecyclerView = findViewById(R.id.tasksText);
         super.onCreate(savedInstanceState);
+        SharedPreferences prefs = getSharedPreferences("TrackR", Context.MODE_PRIVATE);
+
         setContentView(R.layout.activity_dashboard);
         addTask=findViewById(R.id.addNewTask);
         profile_button = (Button)findViewById(R.id.profile_button);
@@ -52,22 +55,39 @@ public class dashboard extends AppCompatActivity {
         todo_fragment = new Todo_Fragment();
         cat_fragment = new Cat_Fragment();
         switcher_tab = findViewById(R.id.tabLayout);
-        getSupportFragmentManager().beginTransaction()
-                .setReorderingAllowed(true)
-                .add(R.id.dashboard_fragment_container, todo_fragment, null)
-                .commit();
 
+        tab_position = prefs.getString("dashboard_tab_state", "0");
+        TabLayout.Tab tab = switcher_tab.getTabAt(Integer.valueOf(tab_position));
+        switcher_tab.selectTab(tab);
+
+        switch (tab_position) {
+            case "0":
+                getSupportFragmentManager().beginTransaction()
+                        .setReorderingAllowed(true)
+                        .add(R.id.dashboard_fragment_container, todo_fragment, null)
+                        .commit();
+                break;
+            case "1":
+                getSupportFragmentManager().beginTransaction()
+                        .setReorderingAllowed(true)
+                        .add(R.id.dashboard_fragment_container, cat_fragment, null)
+                        .commit();
+                break;
+        }
         //THAT LOGIN BYPASS THING
-        SharedPreferences prefs = getSharedPreferences("TrackR", Context.MODE_PRIVATE);
         this.login_state = prefs.getString("login_state", "0");
 //        Toast.makeText(getBaseContext(), login_state, Toast.LENGTH_SHORT).show();
 
         switcher_tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                switch (tab.getPosition())
+
+                tab_position = String.valueOf(tab.getPosition());
+                prefs.edit().putString("dashboard_tab_state", String.valueOf(tab_position)).commit();
+
+                switch (tab_position)
                 {
-                    case 0:
+                    case "0":
                     {
 //                        Toast.makeText(getBaseContext(), "TODO clicked", Toast.LENGTH_SHORT).show();
                         getSupportFragmentManager().beginTransaction()
@@ -76,7 +96,7 @@ public class dashboard extends AppCompatActivity {
                                 .commit();
                         break;
                     }
-                    case 1:
+                    case "1":
                     {
 //                        Toast.makeText(getBaseContext(), "Categories clicked", Toast.LENGTH_SHORT).show();
                         getSupportFragmentManager().beginTransaction()

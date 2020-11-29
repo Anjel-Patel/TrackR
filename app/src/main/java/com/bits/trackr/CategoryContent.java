@@ -40,6 +40,7 @@ public class CategoryContent extends AppCompatActivity {
     FirebaseFirestore db=FirebaseFirestore.getInstance();
     private CollectionReference categoryRef;
     private ItemAdapter adapter;
+    Button category_back_button;
 
 
     @Override
@@ -49,6 +50,7 @@ public class CategoryContent extends AppCompatActivity {
         ItemsRecyclerView = findViewById(R.id.itemstext);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.category_content);
+        category_back_button = (Button)findViewById(R.id.category_back_button);
         addItem=findViewById(R.id.addNewItem);
         data=getIntent();
         addItem.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +100,13 @@ public class CategoryContent extends AppCompatActivity {
                 }
             }
         }).attachToRecyclerView(recyclerView);
+
+        category_back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
 

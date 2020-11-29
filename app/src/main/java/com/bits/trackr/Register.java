@@ -3,6 +3,7 @@ package com.bits.trackr;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -27,71 +28,16 @@ public class Register extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_first);
 
+        SharedPreferences prefs = getSharedPreferences("TrackR", Context.MODE_PRIVATE);
+        prefs.edit().putString("login_state", "0").commit();
+        prefs.edit().putString("UserName", "").commit();
+        prefs.edit().putString("UserEmail", "").commit();
+        prefs.edit().putString("PhoneNumber", "").commit();
+
         signup_phone = (Button)findViewById(R.id.SignupPhone);
         signup_email = (Button)findViewById(R.id.SignupEmail);
         signup_google = (Button)findViewById(R.id.SignupGoogle);
         login_callout = (TextView) findViewById(R.id.login_callout);
-
-//        Username = findViewById(R.id.Email);
-//        Register = findViewById(R.id.registerButton);
-//        Login = findViewById(R.id.login_callout);
-//        phone = findViewById(R.id.Phone);
-//        email = findViewById(R.id.Password);
-//
-//        curr_context = getBaseContext();
-//
-//        Register.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                String usertxt = Username.getText().toString().trim();
-//                String emailtxt = email.getText().toString().trim();
-//                String phonetxt = phone.getText().toString().trim();
-//
-//                if (usertxt.isEmpty()) {
-//                    Username.setError("Enter Username");
-//                    Username.requestFocus();
-//                    return;
-//                }
-//
-//                if (emailtxt.isEmpty()) {
-//                    email.setError("Enter Email");
-//                    email.requestFocus();
-//                    return;
-//                }
-//
-//                if(!Patterns.EMAIL_ADDRESS.matcher(emailtxt).matches()) {
-//                    email.setError("Enter Valid Email Address");
-//                    email.requestFocus();
-//                    return;
-//                }
-//
-//                if (phonetxt.isEmpty() || phonetxt.length() != 10) {
-//                    phone.setError("Enter Valid Number");
-//                    phone.requestFocus();
-//                    return;
-//                }
-//
-//                String phoneNumber = "+91" + phonetxt;
-//
-//                Intent intent = new Intent(Register.this, otp.class);
-//                intent.putExtra("phoneNumber", phoneNumber);
-//                intent.putExtra("emailtxt", emailtxt);
-//                intent.putExtra("usertxt", usertxt);
-//
-//                startActivity(intent);
-//
-//            }
-//        });
-//
-//        Login.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Register.this, EmailLoginActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
     }
 
     @Override
@@ -131,5 +77,11 @@ public class Register extends Activity {
                 finish();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }
